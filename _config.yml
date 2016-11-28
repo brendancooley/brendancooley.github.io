@@ -1,2 +1,4 @@
 name: Hank Quinlan, Horrible Cop
 markdown: rmarkdown
+
+permalink: /blog/:year/:month/:day/:title
