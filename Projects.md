@@ -1,6 +1,6 @@
 ---
 layout: page
-title: CV
+title: Projects
 ---
 
 <p class="message">
