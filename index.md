@@ -3,7 +3,7 @@ layout: default
 title: Home
 ---
 
-<img align="right" src="public/bc.jpg" width="200" height="200">
+<img align="right" src="public/bc.jpg" width="300" height="300">
 
 Brendan Cooley is...
 
