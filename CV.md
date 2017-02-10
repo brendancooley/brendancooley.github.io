@@ -3,13 +3,26 @@ layout: page
 title: CV
 ---
 
-## Brendan Cooley
-
-Department of Politics
-130 Corwin Hall
-Princeton University
-Princeton, NJ 08544
+# Brendan Cooley
+Department of Politics \
+130 Corwin Hall \
+Princeton University \
+Princeton, NJ 08544 \
 [bcooley@princeton.edu](mailto:bcooley@princeton.edu)
+---
+
+### Research Interests
+international relations | political violence | military competition | organized crime
+
+### Education
+- **Current**: Ph.D. Student, Politics, Princeton University
+  - International Relations
+  - Formal and Quantitative Methods
+  - Political Economy
+
+- B.A., Political Science and Peace, War & Defense, University of North Carolina at Chapel Hill, May 2014
+
+
 
 
 <p class="message">
