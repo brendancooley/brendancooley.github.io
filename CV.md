@@ -23,6 +23,11 @@ international relations | political violence | military competition | organized 
 
 - B.A., Political Science and Peace, War & Defense, University of North Carolina at Chapel Hill, May 2014
 
+### Professional Experience
+- **Research Assistant**, Center for Strategic and Budgetary Assessments, Washington, DC
+  - July 2014 - July 2015
+  
+### Fieldwork
 
 
 
