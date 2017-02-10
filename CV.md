@@ -5,11 +5,11 @@ title: CV
 
 ## Brendan Cooley
 
-| Department of Politics |
-| 130 Corwin Hall |
-| Princeton University |
-| Princeton, NJ 08544 |
-| [bcooley@princeton.edu](mailto:bcooley@princeton.edu) |
+Department of Politics
+130 Corwin Hall
+Princeton University
+Princeton, NJ 08544
+[bcooley@princeton.edu](mailto:bcooley@princeton.edu)
 
 
 <p class="message">
