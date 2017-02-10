@@ -9,7 +9,7 @@ Department of Politics
 Princeton University  
 Princeton, NJ 08544  
 [bcooley@princeton.edu](mailto:bcooley@princeton.edu)
-======
+___
 
 ### Research Interests
 international relations | political violence | military competition | organized crime
