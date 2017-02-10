@@ -8,7 +8,7 @@ Department of Politics
 130 Corwin Hall  
 Princeton University  
 Princeton, NJ 08544  
-[bcooley@princeton.edu](mailto:bcooley@princeton.edu)
+[bcooley@princeton.edu](mailto:bcooley@princeton.edu)  
 ___
 
 ### Research Interests
