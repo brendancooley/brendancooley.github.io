@@ -3,6 +3,14 @@ layout: page
 title: CV
 ---
 
+## Brendan Cooley
+
+| Department of Politics |
+| 130 Corwin Hall |
+| Princeton University |
+| Princeton, NJ 08544 |
+
+
 <p class="message">
   Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
 </p>
