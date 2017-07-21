@@ -46,7 +46,7 @@ Political Economy of Conflict | International Trade | International Military Com
 
 - ENG 102: Introduction to Literary Analysis, Spring 2016
   - *Princeton Prison Teaching Initiative (PTI), Garden State Youth Correctional Facility*
-- [International Relations Theory and the Rise of China](https://brendancooley.github.io/public/SPCL400.303), Spring 2014
+- [International Relations Theory and the Rise of China](https://brendancooley.github.io/public/SPCL400.303.pdf), Spring 2014
   - Undergraduate seminar designed and taught through [Carolina Students Taking Academic Responsibility Through Teaching (C-START)](http://honorscarolina.unc.edu/academics/c-start/) program
   
 ### Software
