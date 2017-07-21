@@ -13,7 +13,7 @@ Princeton, NJ 08544
 ___
 
 ### Research Interests
-international relations | political violence | military competition | organized crime
+Political Economy of Conflict | International Trade | International Military Competition | Game Theory | Structural Estimation
 
 ### Education
 - **Current**: Ph.D. Student, Politics, Princeton University
@@ -22,10 +22,19 @@ international relations | political violence | military competition | organized 
   - Political Economy
 
 - B.A., Political Science and Peace, War & Defense, University of North Carolina at Chapel Hill, May 2014
+  - Thesis (highest honors): *Power Transitions and Hegemonic Longevity*
 
 ### Professional Experience
 - **Research Assistant**, Center for Strategic and Budgetary Assessments, Washington, DC
   - July 2014 - July 2015
+  
+### Works in Progress
+
+- [Trade Wars, Hot Wars, and the Commercial Peace]()
+
+### Policy Papers
+
+- Cooley, Brendan M. and James Scouras. 2015. ["A Conventional Flexible Response Strategy for the Western Pacific."](http://www.jhuapl.edu/newscenter/publications/pdf/AConventionalFlexibleResponseStrategyfortheWesternPacific.pdf) Johns Hopkins University Applied Physics Lab.
   
 ### Fieldwork
 
