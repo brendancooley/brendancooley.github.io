@@ -1,5 +1,5 @@
 [![Analytics](https://ga-beacon.appspot.com/UA-104122838-1
-/chromeskel_a/readme)](https://github.com/igrigorik/ga-beacon)
+/brendancooley.github.io/readme)](https://github.com/igrigorik/ga-beacon)
 
 # Lanyon
 
