@@ -1,5 +1,3 @@
-[![Analytics](https://ga-beacon.appspot.com/UA-104122838-1/brendancooley.github.io/readme)](https://github.com/igrigorik/ga-beacon)
-
 # Lanyon
 
 Lanyon is an unassuming [Jekyll](http://jekyllrb.com) theme that places content first by tucking away navigation in a hidden drawer. It's based on [Poole](http://getpoole.com), the Jekyll butler.
