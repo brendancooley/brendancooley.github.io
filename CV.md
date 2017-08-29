@@ -30,7 +30,7 @@ Political Economy of Conflict | International Trade | International Military Com
   
 ### Works in Progress
 
-- [Trade Wars, Hot Wars, and the Commercial Peace]()
+- [Trade Wars, Hot Wars, and the Commercial Peace](https://brendancooley.github.io/papers/Cooley_twhw.pdf)
 
 ### Policy Papers
 
