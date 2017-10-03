@@ -13,6 +13,6 @@ title: Papers
 
 [Paper](http://brendancooley.github.io/papers/Cooley_twhw.pdf)
 
-[Slides](https://cdn.rawgit.com/brendancooley/twhw/2d7d618f/slides/twhw.html)
+[Slides](https://rawgit.com/brendancooley/twhw/master/slides/twhw.html)
 
 [Interactive Model Visualization](https://brendancooley.shinyapps.io/twhw/)
