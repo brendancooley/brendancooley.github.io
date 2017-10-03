@@ -13,4 +13,6 @@ title: Papers
 
 [Paper](http://brendancooley.com/twhw/paper/Cooley_twhw.pdf)
 
+[Slides](http://brendancooley.com/twhw/slides/twhw.html)
+
 [Interactive Model Visualization](https://brendancooley.shinyapps.io/twhw/)
