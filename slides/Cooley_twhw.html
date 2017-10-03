@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Trade Wars, Hot Wars, and the Commercial Peace</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Brendan Cooley" />
+    <meta name="date" content="2017-10-03" />
+    <link rel="stylesheet" href="cooley-slide-template.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Trade Wars, Hot Wars, and the Commercial Peace
+### Brendan Cooley
+### 03 October 2017
+
+---
+
+
+
+
+.left-column[
+  ## Introduction
+  ### Motivation
+]
+
+.right-column[
+
+**Bargaining Models of Conflict**
+  - Conflict of interest taken as given
+  - Extremal (but oft-used case): bargainers have homogenous preferences over consumption of some private good
+  - Say, *territory*
+
+**Bargaining over Policies and Externalities**
+  - Intergovernmental bargaining often revolves around 
+    1. Which domestic policies will be adopted
+    2. Who will bear costs of adjustment induced by changes from status quo
+  - Examples: trade, investment, monetary, and environmental policies
+  - Heterogenous policy preferences `\(\implies\)` heterogeneous conflicts of interest
+]
+
+---
+.left-column[
+  ## Introduction
+  ### Motivation
+  ### Trade Policy
+]
+
+.right-column[
+
+**Protection for Sale**
+  - Trade policy generates externalities (when country is 'large')
+    - Home tariff increases impose costs on *foreign* exporters
+  - Magnitude of externality varies with degree of government capture
+    - Governments more sensitive to producer interests endeavor to adopt more distortionary policies (Grossman and Helpman 1994)
+
+**Trade Wars and Hot Wars**
+  - Governments have both militarized and nonmilitarized tools to influence policy choices abroad
+    - Nonmilitarized: noncooperative trade policy (Grossman and Helpman 1995)
+    - Militarized: foreign-imposed regime change
+
+]
+
+---
+.left-column[
+  ## Introduction
+  ### Motivation
+  ### Trade Policy
+  ### Preview
+]
+
+.right-column[
+
+1. Domestic political economy of trade defines governments' policy preferences
+2. Governments bargain with one another over bilateral trade policies
+3. Bargaining occurs under the shadow of noncooperative trade policy *and* militarized conflict
+  - War results in imposition of 'puppet' government in losing state, preferences of puppet determined by victor
+4. (Extension) Endogenous military investment
+
+**Questions**
+
+1. Are more representative governments less conflict-prone?
+2. Does international economic integration promote peace?
+3. Are commercial policies determined by primarily by domestic political characteristics or international structural factors?
+
+]
+
+???
+
+- answers to questions come out as comparative statics in the model
+- model of gunboat diplomacy?
+
+---
+.left-column[
+  ## Model
+  ### Economies
+]
+
+.right-column[
+
+**Demand**
+
+- Two-country `\((i, j)\)`, two good `\((0, 1)\)`, Ricardo-Viner model of trade
+- Representative consumer utility (quasilinear):
+`$$U_i(\boldsymbol{q}_i) = q_{i0} + u_i(q_{i1})$$`
+- `\(L_i\)` - labor endowment
+- Good 0 as numeraire, produced with labor alone and crs with `\(f_{i0}^\prime(L_{i0}) = 1 \implies w_i = 1\)`
+
+**Supply**
+
+- `\(K_{i1}\)` - good 1 "specific factor"
+- Technology: `\(f_{i1}(L_{i1}, K_{i1})\)`
+
+]
+
+---
+.left-column[
+  ## Model
+  ### Economies
+]
+
+.right-column[
+
+**Prices**
+
+- `\(p_{i0} = 1\)` (numeraire), supress good index henceforth `\((p_i \equiv p_{i1})\)`
+- `\(\tau_i = 1 + t_i\)` where `\(t_i\)` is ad valorem tariff
+- `\(\pi\)` - international price
+- `\(p_i = \tau_i \pi\)`
+
+&lt;br /&gt;
+
+|               | Importer       | Exporter       |
+|:--------------|:--------------:|:--------------:|
+|$$\tau_i &gt; 1$$ | Import Tariff  | Export Subsidy |
+|$$\tau_i &lt; 1$$ | Import Subsidy | Export Tax     |
+
+]
+
+---
+.left-column[
+  ## Model
+  ### Economies
+]
+
+.right-column[
+
+**Economic Equilibrium (Definition 1)**
+
+*Consumers*
+`\begin{aligned}
+\max_{\boldsymbol{q}} &amp;&amp; U_i(\boldsymbol{q}) \\
+\text{subject to  } &amp;&amp;  q_0 + p_i q_{i1} \leq L_i
+\end{aligned}`
+
+*Producers*
+`$$\max_{\boldsymbol{L_{i1}}} \quad p_i f_{i1}(L_{i1}, K_{i1}) - L_{i1}$$`
+
+*Market Clearing*
+`$$L_{i0} + L_{i1} = L_i$$`
+`$$q_{11} + q_{21} = f_{11}(L_{11}, K_{11}) + f_{21}(L_{21}, K_{21})$$`
+
+&lt;br /&gt;
+
+- Demand: `\(d_i(p_i)\)`
+- Supply: `\(X_i(p_i)\)`
+- Net imports: `\(m_i(p_i) = d_i(p_i) - X_i(p_i)\)`
+
+]
+
+---
+.left-column[
+  ## Model
+  ### Economies
+]
+
+.right-column[
+
+**Welfare effects of imposition of foreign tariff**
+
+![](twhw_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+
+]
+
+.footnote[
+[Interactive](https://brendancooley.shinyapps.io/twhw/)
+]
+
+---
+.left-column[
+  ## Model
+  ### Economies
+]
+
+.right-column[
+
+**Components of Domestic Welfare**
+
+- Consumer Surplus
+`$$S(p_i) = U_i(\boldsymbol{q}_i^\star) - p_i q_{i1}^\star - q_{i0}^\star$$`
+- Producer Profits
+`$$\Pi(p_i) = p_i \cdot f_{i1}(L_{i1}^\star, K_{i1}) - L_{i1}^\star(p_i)$$`
+- Tariff Revenue
+`$$r(\tau_i, \pi) = (\tau_i - 1) \cdot \pi \cdot m_i(\tau_i * \pi)$$`
+
+&lt;br /&gt;
+
+- Economic equilibrium determines how international economy will respond to arbitrary pair of tariffs, `\(\left\{ \tau_i, \tau_j \right\}\)`
+- Next step: endogenize trade policy
+
+]
+
+
+---
+.left-column[
+  ## Model
+  ### Economies
+  ### Political Economies
+]
+
+.right-column[
+
+**Influence Game (Trade Wars)**
+
+1. Producers present contribution schedules to the government
+$$
+C_i:(\tau_i, \tau_j) \rightarrow \mathbb{R}
+$$
+2. Governments choose trade policies
+3. Policies are implemented. Promised contributions accrue to the government and production and consumption occur.
+
+**Government objective function**
+`\begin{align*}
+G_i(\tau_i, \tau_j) =&amp; (1 - a) C_i(\tau_i, \tau_j) + \\ 
+&amp; a \left[\Pi_i(\tau_i, \tau_j) + S_i(\tau_i, \tau_j) \right] + r(\tau_i, \tau_j)
+\end{align*}`
+
+- `\(a_i \rightarrow 0\)`: pure 'kleptocrat' (contribution maximizer)
+- `\(a_i \rightarrow 1\)`: pure 'technocrat' (social welfare maximizer)
+
+]
+
+???
+
+I'll refer to `\(a_i\)` as 'bias type'
+
+---
+.left-column[
+  ## Model
+  ### Economies
+  ### Political Economies
+]
+
+.right-column[
+**Lemma 1 (Grossman and Helpman 1994 Proposition 1):**
+*For an arbitrary foreign (home) trade policy, `\(\tau_j\)`, let `\(\tau_i^0\)` denote the home government's optimal policy in the absence of political contributions `\((C_i(\tau_i, \tau_j) = 0)\)` and `\(g_i(\tau_i; \tau_j)\)` its associated welfare.
+$$
+\tau_i^0 \in \underset{\tau_i}{\operatorname{argmax }} \text{ } g_i(\tau_i; \tau_j)
+$$
+In a domestic political economic equilibrium, the government chooses trade policy to maximize a weighted sum of producer and social welfare
+$$
+\tau_i^\star \in \underset{\tau_i}{\operatorname{argmax}} \text{ }
+ \Pi_i(\tau_i, \tau_j) + a S_i(\tau_i, \tau_j) + r(\tau_i, \tau_j)
+$$
+and equilibrium political contributions from producers of Good 1 ($C_i^\star$) satisfy
+$$
+C_i^\star(\tau_i^0, \tau_i^\star; \tau_j) = \Pi_i(\tau_i^\star, \tau_j) + a S_i(\tau_i^\star, \tau_j) + r(\tau_i^\star, \tau_j) - g_i(\tau_i^0; \tau_j)
+$$
+for any `\(\tau_j\)`.*
+
+]
+
+.footnote[
+[Proof](LINK1)
+]
+
+---
+.left-column[
+  ## Model
+  ### Economies
+  ### Political Economies
+]
+
+.right-column[
+![](twhw_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+
+.footnote[
+[Interactive](https://brendancooley.shinyapps.io/twhw/)
+]
+
+---
+.left-column[
+  ## Model
+  ### Economies
+  ### Political Economies
+]
+
+.right-column[
+
+**Trade Wars (Definition 2):** In a noncooperative Nash Equilibrium, government trade policies maximize their contribution-induced utility and constitute best responses to one another
+$$
+\tau_i^\star \in \underset{\tau_i}{\operatorname{argmax}} \text{ }
+ \Pi_i(\tau_i, \tau_j^\star) + a_i S_i(\tau_i, \tau_j^\star) + r(\tau_i, \tau_j^\star)
+$$
+$$
+\tau_j^\star \in \underset{\tau_j}{\operatorname{argmax}} \text{ }
+ \Pi_j(\tau_j, \tau_i^\star) + a_j S_j(\tau_j, \tau_i^\star) + r(\tau_j, \tau_i^\star)
+$$
+Political contributions, `\(C_i^\star(\tau_i^0, \tau_i^\star, ;\tau_j^\star)\)`, satisfy Lemma 1.
+]
+
+---
+.left-column[
+  ## Model
+  ### Economies
+  ### Political Economies
+]
+
+.right-column[
+
+Features of trade wars equilibrium: 
+
+1. Governments' choices of trade policy demonstrate strategic complementarity (best response curves are increasing and concave)
+2. Governments' objective functions satisfy increasing differences in `\((\tau_i, a_i)\)`
+
+Objective Function:
+`$$G(\tau_i; a_i) = \Pi(\tau_i) + a_i S(\tau_i) + r(\tau_i)$$`
+
+`\((-) G(\tau_i, a_i)\)` satisfies increasing differences:
+$$
+G(\tau_i; a_i) - G(\tau_i^\prime; a_i) \leq  G(\tau_i; a_i^\prime) - G(\tau_i^\prime; a_i^\prime)
+$$
+
+*Translation - lower types (more kleptocratic) choose higher tariffs*
+
+**Lemma 2.1:** `\(\tau_i^\star(a_i)\)` is strictly decreasing in `\(a_i\)`.
+
+.footnote[
+[Proof](LINK2)
+]
+]
+
+---
+.left-column[
+  ## Model
+  ### Economies
+  ### Political Economies
+]
+
+.right-column[
+
+**Lemma 2.2:** There is a one-to-one mapping between changes in `\(i\)`'s type `\((a_i)\)` and changes in home `\((p_i)\)`, foreign `\((p_j)\)`, and international `\((\pi)\)` prices in a trade wars equilibrium (Definition 2)
+
+*Governments that have preferences over foreign trade policy also have implicit preferences over that government's bias type*
+
+]
+
+---
+.left-column[
+  ## Model
+  ### Economies
+  ### Political Economies
+  ### Bargaining Environment
+]
+
+.right-column[
+
+War modeled as costly lottery in which victor can replace loser's government with puppet...puppet's bias type chosen by victor
+
+Two questions to consider here:
+1. What are governments' preferences over the bias type of their bargaining partner?
+2. When and how does militarized option affect bargaining outcomes?
+
+**Preliminaries**
+
+- Military capability: `\(\omega_i\)`
+- Contest function: `\(\rho: \left\{ \omega_i, \omega_j \right\} \rightarrow [0, 1]\)`
+  - increasing and weakly concave in `\(\omega_i\)`
+  - decreasing and weakly convex in `\(\omega_j\)` 
+  - satisfies law of total probability `\(\rho(\omega_i, \omega_j) + \rho(\omega_j, \omega_i) = 1\)`
+]
+
+---
+.left-column[
+  ## Model
+  ### Economies
+  ### Political Economies
+  ### Bargaining Environment
+]
+
+.right-column[
+
+**Bargaining Game**
+
+- `\(j\)` makes take it or leave it proposal consisting of bilateral trade policy and side payment `\(\left\{ \tau_i, \tau_j, R^j \right\}\)`&lt;sup&gt;1&lt;/sup&gt;
+- `\(i\)` takes one of three actions
+  1. Accept offer, `\(\left\{ \tau_i, \tau_j, R^j \right\}\)` implemented
+  2. Reject offer and implement noncooperative trade policy, yielding `\(G_i(\tau_i^\star, \tau_j^\star)\)` (Definition 2)
+  3. Declare war, yielding `$$\tilde{G}_i = \left( \rho(\omega_i, \omega_j) \overline{G}_i + (1 - \rho(\omega_i, \omega_j)) \underline{G}_i \right) (1 - c_i)$$`
+
+.footnote[
+
+[1] Assumption that side payments are available is innocuous. Grossman and Helpman (1995) show that an arbitrary division of bargaining surplus can be implemented using tariffs only through tariff revenue mechanism.
+]
+
+]
+
+???
+
+- need to know war outcomes to know what bargains will be acceptable to `\(i\)`
+
+---
+.left-column[
+  ## Model
+  ### Economies
+  ### Political Economies
+  ### Bargaining Environment
+]
+
+.right-column[
+
+**Lemma 3:**
+$$
+G_i^t \left( \tau_i^t, \tau_j^t, R^j(a_i, a_j) \right) = G_i(\tau_i^t, \tau_j^t) + R^j(a_i, a_j) = G_i \left( \tau_i^\star(a_i), \tau_j^\star(a_j) \right)
+$$
+
+*pure trade talks leaves `\(i\)` indifferent between `\(j\)`'s proposal and trade wars*
+
+**Bias Type Preferences**
+
+$$
+k(a_i) = \underset{a_j}{\operatorname{argmax}} \text{ } G_i \left( \tau_i^\star(a_i), \tau_j^\star(a_j) \right)
+$$
+
+`\(k(a_i)\)` *is `\(i\)`'s preference over the bias type of `\(j\)` -- what type of government would `\(i\)` impose if it won the war?*
+
+**War Outcomes**
+
+$$
+\overline{G}_i \left( a_i, k(a_i) \right) = G_i \left( \tau_i^\star(a_i), \tau_j^\star(k(a_i)) \right)
+$$
+
+`\begin{align*}
+\underline{G}_i \left( k(a_j), a_j; a_i \right) =&amp; \Pi_i \left( \tau_i^\star \left( k(a_j) \right), \tau_j^\star(a_j) \right) + \\
+&amp; a_i S_i \left( \tau_i^\star\left( k(a_j) \right), \tau_j^\star(a_j) \right) + r \left( \tau_i^\star\left( k(a_j) \right), \tau_j^\star(a_j) \right)
+\end{align*}`
+
+]
+
+???
+
+- Discuss assumptions on \underline{G}...consistent with thinking of government as an aggregation of forward-looking substate actors
+
+---
+.left-column[
+  ## Model
+  ### Economies
+  ### Political Economies
+  ### Bargaining Environment
+]
+
+.right-column[
+
+**Counterfactual Trade Policies**
+
+**Lemma 4:** Let `\(\left\{ \tau_i^\prime, \tau_j^\prime \right\}\)` denote the trade policies that emerge in the counterfactual trade wars equilibrium in which governments' bias parameters are `\(\left\{ a_i, k(a_i) \right\}\)` and `\(\left\{ \tau_i^\star, \tau_j^\star \right\}\)` denote the policies associated with `\(\left\{ a_i, a_j \right\}\)`. Then
+`$$k(a_i) &gt; a_j \implies \left\{ \tau_i^\prime, \tau_j^\prime \right\} \ll \left\{ \tau_i^\star, \tau_j^\star \right\}$$`
+and
+`$$k(a_i) &lt; a_j \implies \left\{ \tau_i^\prime, \tau_j^\prime \right\} \gg \left\{ \tau_i^\star, \tau_j^\star \right\}$$`
+
+[Proof](LINK3)
+
+**Definition 4:** Let `\(\tilde{a}_i\)` define the (unbounded) type of home government that desires no change in the type of the foreign government
+`$$\tilde{a}_i(a_j) = \left\{ a_i | k(a_i) = a_j \right\}$$`
+
+]
+
+---
+.left-column[
+  ## Model
+  ### Economies
+  ### Political Economies
+  ### Bargaining Environment
+]
+
+.right-column[
+
+![](figures/atilde.png)
+
+]
+
+???
+
+- discuss why a &lt; \tilde{a} characterizes most real-life governments
+
+---
+.left-column[
+  ## Results
+  ### Overview
+]
+
+.right-column[
+
+![](twhw_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+]
+
+.footnote[
+[Interactive](https://brendancooley.shinyapps.io/twhw/)
+]
+
+---
+.left-column[
+  ## Results
+  ### Overview
+  ### Conflicts of Interest
+]
+
+.right-column[
+
+**Definition 5:** Government `\(i\)`'s conflict of interest with `\(j\)` is given by:
+`$$\Gamma_i(a_i, a_j) = \overline{G}_i \left( a_i, k(a_i) \right) - \underline{G}_i \left( k(a_j), a_j; a_i \right)$$`
+
+**Proposition 1:** For a fixed `\(a_j\)` and for all `\(a_i &lt; \tilde{a}_i(a_j)\)`, `\(\Gamma(a_i, a_j)\)` is decreasing in `\(a_i\)`.
+
+[Proof](LINK4)
+
+&lt;img src="figures/heatmap.png" width="2560" /&gt;
+
+]
+
+???
+
+- note non-reflexivity of conflict of interest
+
+---
+.left-column[
+  ## Results
+  ### Overview
+  ### Conflicts of Interest
+  ### Militarized Bargaining
+]
+
+.right-column[
+
+- When are implicit threats of force required to pin down bargaining outcomes?
+- When are pure 'trade talks' sufficient?
+
+**Trade Wars versus Hot Wars**
+
+- Distribution of foreign military capabilities `\(F_j:[\underline{\omega}_j, \overline{\omega}_j] \rightarrow [0,1]\)`
+- Expected hot wars utility:
+`$$\tilde{G}_i(a_i, a_j) =
+\left[ \rho(\omega_i, \omega_j) \overline{G}_i \left( a_i, k(a_i) \right) + \\ (1 - \rho(\omega_i, \omega_j)) \underline{G}_i \left( k(a_j), a_j; a_i \right) \right] (1 - c_i)$$`
+- Hot wars preferred to trade wars whenever
+`$$\left[ \underline{G}_i \left( k(a_j), a_j; a_i \right) + \rho(\omega_i, \omega_j) \Gamma_i(a_i, a_j) \right] (1 - c_i) &gt;\\ G_i(\tau_i^\star(a_i), \tau_j^\star(a_j))$$`
+
+]
+
+---
+.left-column[
+  ## Results
+  ### Overview
+  ### Conflicts of Interest
+  ### Militarized Bargaining
+]
+
+.right-column[
+
+**Proposition 2:** For any draw from `\(F_j\)`, the probability that hot wars binds is increasing in the magnitude of the `\(i\)`'s conflict of interest with `\(j\)`, `\(\Gamma(a_i, a_j)\)`. 
+
+[Proof](LINK7)
+
+**Substantive Significance**
+
+- If hot wars is relevant for bargaining, we should expect states to maintain competent and ready military postures to ensure implicit threats are taken seriously
+- By contrast, countries that engage in pure 'trade talks' need only make trade sanctions credible
+- More kleptocratic dyads more likely to rely on militarized outside option
+
+
+]
+
+---
+.left-column[
+  ## Extension
+]
+
+.right-column[
+
+- Fix foreign military capability `\((\omega_j)\)`
+- Consider decision problem of home government that faces weakly convex cost of acquiring military capacity, `\(z_i(\omega_i)\)`
+
+`$$\tilde{G}_i(\omega_i,\omega_j) = \left[ \underline{G}_i \left( k(a_j), a_j; a_i \right) + \rho(\omega_i, \omega_j) \Gamma_i(a_i, a_j) \right] (1 - c_i)$$`
+
+]
+  
+---
+.left-column[
+  ## Extension
+]
+
+.right-column[
+
+**3 scenarios to consider:**
+
+1. Set `\(\omega_i = 0\)`, yielding either trade wars utility or `\(\tilde{G}_i(0, \omega_j)\)`
+2. Ensure that hot wars does not bind for `\(j\)`, invest `\(\omega_i^\star\)` where `\(\omega_i^\star\)` solves
+`$$\left( \underline{G}_j \left( k(a_i), a_i; a_j \right) + \rho(\omega_i^\star, \omega_j) \Gamma_j(a_j, a_i) \right) (1 - c_j) = \\ G_j(\tau_j^\star(a_j), \tau_i^\star(a_i))$$`
+yielding utility `\(G_i(\tau_i^\star(a_i), \tau_j^\star(a_j)) - z(\omega_i^\star)\)`
+3. Invest optimally for hot wars
+$$
+\frac{\partial \tilde{G}_i(\omega_i,\omega_j)}{\partial \omega_i} = \frac{\partial \rho(\omega_i, \omega_j)}{\partial \omega_i} \Gamma_i(a_i, a_j) (1 - c_i) - \frac{\partial z_i(\omega_i)}{\partial \omega_i} = 0
+$$
+
+*1 and 2 do not depend on magnitude of `\(i\)`'s conflict of interest with `\(j\)`*
+]
+
+---
+.left-column[
+  ## Extension
+]
+
+.right-column[
+
+**Proposition 3:** Investment in military capability, `\(\omega_i\)`, is weakly increasing in it's conflict of interest with the adversary government, `\(\Gamma_i(a_i, a_j)\)`.
+
+[Proof](#/prop3)
+
+]
+
+---
+.left-column[
+  ## Discussion
+]
+
+.right-column[
+
+**Summary of Findings**
+
+- Among governments of interest `\((a &lt; \tilde{a})\)`, conflicts of interest grow as governments become more kleptocratic
+- As conflicts of interest grow, the probability that bargaining becomes militarized increases
+- Given the opportunity to invest in military capability, those with larger conflicts of interest choose larger investments
+
+*Gerschenkron (1943): autocracy, trade protectionism, and foreign policy belligerence are intimately related*
+
+**Commercial Peace**
+
+1. Increase in number of democracies
+2. Increase in international trade flows
+3. Relative dearth of interstate conflict 
+
+*Model takes (1) as primitive and derives (2) and (3) from single framework*
+
+]
+
+---
+.left-column[
+  ## Discussion
+]
+
+.right-column[
+
+Bargaining model built on top of underlying political economy of trade, but results would carry through in a more general environment
+
+**3 key assumptions:**
+
+1. Governments choose an externality-creating policy
+2. Magnitude of the externality varies monotonically as a function of the governments' types
+3. Threat points include both noncooperative policy choice and militarized conflict
+
+*Most policies of interest to IR researchers display these properties to some extent*
+- Exchange rate regimes, investment protections, environmental policies
+
+]
+
+---
+.left-column[
+  ## Conclusion
+]
+
+.right-column[
+
+**Implications for International Security**
+
+- Conflict `\(\implies\)` conflict of interest
+- Heterogenous preferences over externality-generating policies as basis for variation in conflicts of interest
+- Preference-based (as opposed to information-based (Schultz 1998) or institutions-based (Bueno de Mesquita et al 2003)) account of democratic/commercial peace
+
+**Implications for IPE**
+
+- Several studies have employed Grossman-Helpman model to estimate governments' bias parameter
+- If policy set under shadow of international coercion, these will overestimate representativeness
+- Social welfare consciousness and latent foreign threats as basis for trade liberalization
+
+]
+
+---
+class: center, middle
+
+# Backup
+
+---
+**Lemma 1**
+
+Government welfare maximization requires
+$$
+\frac{\partial C_i(\tau_i)}{\partial \tau_i} + a \left[ \frac{\partial \Pi(\tau_i) }{\partial \tau_i} + \frac{\partial S(\tau_i)}{\partial \tau_i} \right] + \frac{\partial r(\tau_i)}{\partial \tau_i} = 0
+$$
+Taking this behavior as given, producers implement `\(\tau_i\)` to maximize their own welfare. Producer net welfare maximization therefore requires
+$$
+\frac{\partial \Pi(\tau_i)}{\partial \tau_i } - \frac{\partial C_i(\tau_i)}{\partial \tau_i} = 0
+$$
+Substituting these conditions in for one another, we obtain
+$$
+\frac{\partial \Pi(\tau_i)}{\partial \tau_i} + a \left[ \frac{\partial \Pi(\tau_i) }{\partial \tau_i} + \frac{\partial S(\tau_i)}{\partial \tau_i} \right] + \frac{\partial r(\tau_i)}{\partial \tau_i} = 0
+$$
+which is consistent with joint welfare maximization on behalf of the government.
+
+---
+**Lemma 1 (continued)**
+
+Given that `\(\tau_i^\star\)` will maximize joint welfare, we can determine equilibrium contributions. Note first that we must have `\(C_i(\tau_i^0) = 0\)`. If this were not the case, producers could reduce their contributions and the government's policy choice would remain unchanged, yielding a profitable deviation. This then becomes the government's individual rationality constraint. Producers will set `\(C_i(\tau_i^\star)\)` such that the government is indifferent between implementing `\(\tau_i^\star\)` and `\(\tau_i^0\)`. This indifference requires that
+$$
+C_i^\star(\tau_i^0, \tau_i^\star; \tau_j) = \Pi_i(\tau_i^\star, \tau_j) + a S_i(\tau_i^\star, \tau_j) + r(\tau_i^\star, \tau_j) - g_i(\tau_i^0; \tau_j)
+$$
+or the difference between `\(G(\tau_i^\star)\)` and `\(g_i(\tau_i^0)\)`.
+
+---
+**Lemma 2.1**
+
+Since producer profits and tariff revenue are unweighted, the condition simplifies to comparing differences in weighted consumer surpluses
+`$$a_i \left( S_i(\tau_i)- S_i(\tau_i^\prime) \right) \leq a_i^\prime \left( S_i(\tau_i)- S_i(\tau_i^\prime) \right)$$`
+`\(S(\tau_i)\)` is a strictly decreasing function of `\(\tau_i\)`, which is sufficient to confirm increasing differences. Since `\((-)G(\tau_i; a_i)\)` satisfies increasing differences and `\(\tau_i \in \mathbb{R}_+\)`, optimal `\(\tau_i\)` are monotone decreasing in `\(a_i\)` by Ashworth and Bueno de Mesquita 2006 Theorem 1 (Milgrom 1994). This proves part 1.
+
+**Lemma 2.2**
+
+As noted in Definition 1, domestic and international prices are functions of home and foreign tariff choices, `\(p_i(\tau_i, \pi)\)`, `\(p_j(\tau_j, \pi)\)`, and `\(\pi(\tau_i, \tau_j)\)`. Since `\(i\)`'s politically optimal tariffs are in turn functions of `\(a_i\)`, these prices are each implicit functions of `\(a_i\)` as well. For any set of (bounded) prices, we can find an `\(\left\{ a_i, a_j \right\}\)` that would generate them in a trade wars equilibrium.
+
+---
+**Lemma 4**
+
+Consider `\(k(a_i) &lt; a_j\)`. As shown in Lemma 1, governments' choice problems satisfy increasing differences - lower bias types ($a_i$) choose higher tariffs. Since both choice problems have this feature, home and foreign tariffs in trade wars Nash equilibria are also decreasing in `\(\left\{ a_i, a_j \right\}\)` by Tarski's fixed point theorem (Ashworth and Bueno de Mesquita 2006). Therefore, `\(k(a_i) &lt; a_j \implies \left\{ \tau_i^\prime, \tau_j^\prime \right\} \gg \left\{ \tau_i^\star, \tau_j^\star \right\}\)`
+
+---
+**Proposition 1**
+
+By Definition 4, we know `\(a_i &lt; \tilde{a}_i(a_j) \implies k(a_i) &gt; a_j\)`. Take `\(a_i\)`, `\(a_i^\prime\)` with `\(a_i \geq a_i^\prime\)`. In Lemma 1 we have that `\((-) G(\tau_i, a_i)\)` satisfies increasing differences in `\(\left\{ \tau_i, a_i \right\}\)`. It also satisfies increasing differences in `\(\left\{ \tau_i / \tau_j, a_i \right\}\)` so `\(\tau_i^\star / \tau_j^\star\)` are monotone decreasing in `\(a_i\)`. Let `\(\tau_i / \tau_j\)` be the trade wars equilibrium ratio associated with `\(\left\{ a_i, k(a_i) \right\}\)` `\((\overline{G}(a_i))\)` and `\(\tau_i^\prime / \tau_j^\prime\)` be the ratio associated with `\(\left\{ a_i^\prime, k(a_i^\prime) \right\}\)` `\((\overline{G}(a_i^\prime))\)`. Monotone decreasingness implies `\(\tau_i^\prime / \tau_j^\prime &gt; \tau_i / \tau_j\)`. The ratio associated with `\(\left\{k(a_j), a_j \right\}\)` `\((\underline{G}(a_i))\)` does not vary with `\(a_i\)` - denote this with `\(\tau_i^0 / \tau_j^0\)`. From Lemma 2, we have 
+$$
+G(\tau_i; a_i) - G(\tau_i^0; a_i) \leq  G(\tau_i; a_i^\prime) - G(\tau_i^0; a_i^\prime) \leq G(\tau_i^\prime; a_i^\prime) - G(\tau_i^0; a_i^\prime)
+$$
+Replacing with conflicts of interest:
+$$
+\Gamma(a_i) \leq G(\tau_i; a_i^\prime) - G(\tau_i^0; a_i^\prime) \leq \Gamma(a_i^\prime)
+$$
+Which is sufficient to show that conflicts of interest are decreasing in `\(a_i\)`.
+
+---
+**Proposition 2:**
+Let `\(\omega_j^\star\)` denote the value of `\(\omega_j\)` that solves the hot war preference inequality with equality `$$\left( \underline{G}_i \left( k(a_j), a_j; a_i \right) + \rho(\omega_i, \omega_j^\star) \Gamma(a_i, a_j) \right) (1 - c_i) = G_i(\tau_i^\star(a_i), \tau_j^\star(a_j))$$`
+Clearly `\(\omega_j^\star\)` increases with `\(\Gamma(a_i a_j)\)`, as the right hand side is unaffected by changes in `\(\Gamma(a_i a_j)\)` and `\(\rho(\omega_i, \omega_j)\)` is a decreasing function of `\(\omega_j\)`. Hot wars will bind for `\(i\)` for all `\(\omega_j &lt; \omega_j^\star\)`. The probability that hot wars binds for `\(i\)` is therefore given by `$$\int_{\underline{\omega}_j}^{\omega_j^\star} f(\omega_j) d \omega_j$$`
+Since `\(\omega_j^\star\)` is increasing in `\(\Gamma(a_i, a_j)\)` this quantity is also increasing in `\(\Gamma(a_i, a_j)\)`.
+
+---
+id: prop3
+
+**Proposition 3:**
+When conflicts of interest are small and optimal investment does not satisfy first order conditions, investment is invariant of `\(i\)`'s conflict of interest with `\(j\)`. So we need only consider the case in which `\(i\)` invests optimally for conflict. If the cross partial of `\(\tilde{G}_i(\omega_i,\omega_j)\)` in `\(\omega_i\)`, `\(\Gamma_i(a_i, a_j)\)` is positive, then optimal investment is increasing in `\(\Gamma_i(a_i, a_j)\)`. We can confirm this by noting
+$$
+\frac{\partial \tilde{G}_i(\omega_i,\omega_j, \Gamma_i)}{\partial \omega_i \partial \Gamma_i} = \frac{\partial \rho(\omega_i, \omega_j)}{\partial \omega_i}(1 - c_i)
+$$
+which is positive given our assumptions on `\(\rho(\omega_i, \omega_j)\)` and `\(c_i\)`.
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {window.dispatchEvent(new Event('resize'));});
+(function() {var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler"); if (!r) return; s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }"; d.head.appendChild(s);})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
