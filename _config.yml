@@ -8,7 +8,7 @@ title:               Brendan Cooley
 tagline:             'International Relations | Political Economy | Violent Conflict'
 description:         'Brendan Cooley'
 url:                 http://brendancooley.github.io
-baseurl:             '/project-name'
+baseurl:             ''
 paginate:            5
 
 # About/contact
