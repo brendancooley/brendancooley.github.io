@@ -11,7 +11,7 @@ title: Papers
 
 **Links:**
 
-[Paper](http://brendancooley.github.io/papers/Cooley_twhw.pdf)
+[Paper](https://rawgit.com/brendancooley/twhw/master/paper/Cooley_twhw.pdf)
 
 [Slides](https://rawgit.com/brendancooley/twhw/master/slides/twhw.html)
 
