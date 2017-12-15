@@ -1,7 +1,19 @@
 ---
-layout: default
+layout: default2
 ---
 
-<div class="page">
-  {{ content }}
+<div class="post">
+
+  <article class="post-content {{page.title}} clearfix">
+    {{ content }}
+  </article>
+
+  {% if page.news %}
+    {% include news.html %}
+  {% endif %}
+
+  {% if page.social %}
+    {% include social.html %}
+  {% endif %}
+
 </div>

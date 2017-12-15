@@ -1,134 +1,102 @@
-# Lanyon
+# al-folio
 
-Lanyon is an unassuming [Jekyll](http://jekyllrb.com) theme that places content first by tucking away navigation in a hidden drawer. It's based on [Poole](http://getpoole.com), the Jekyll butler.
+[![demo](https://img.shields.io/badge/theme-demo-brightgreen.svg)](https://alshedivat.github.io/al-folio/)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/alshedivat/al-folio/blob/master/LICENSE)
 
-![Lanyon](https://f.cloud.github.com/assets/98681/1825266/be03f014-71b0-11e3-9539-876e61530e24.png)
-![Lanyon with open sidebar](https://f.cloud.github.com/assets/98681/1825267/be04a914-71b0-11e3-966f-8afe9894c729.png)
+A simple and clean [Jekyll](https://jekyllrb.com/) theme for academics.
 
+[![Screenshot](assets/img/full-screenshot.png)](https://alshedivat.github.io/al-folio/)
 
-## Contents
+Originally, **al-folio** was based on the [\*folio theme](https://github.com/bogoli/-folio) (published by [Lia Bogoev](http://liabogoev.com) and under the MIT license).
+Since then, it got a full re-write of the styles and many additional cool features.
+The emphasis is on whitespace, transparency, and academic usage: [theme demo](https://alshedivat.github.io/al-folio/).
 
-- [Usage](#usage)
-- [Options](#options)
-  - [Sidebar menu](#sidebar-menu)
-  - [Themes](#themes)
-  - [Reverse layout](#reverse-layout)
-- [Development](#development)
-- [Author](#author)
-- [License](#license)
+## Getting started
 
+For more about how to use Jekyll, check out [this tutorial](https://www.taniarascia.com/make-a-static-website-with-jekyll/).
+Why Jekyll? Read this [blog post](https://karpathy.github.io/2014/07/01/switching-to-jekyll/)!
 
-## Usage
+### Installation
 
-Lanyon is a theme built on top of [Poole](https://github.com/poole/poole), which provides a fully furnished Jekyll setup—just download and start the Jekyll server. See [the Poole usage guidelines](https://github.com/poole/poole#usage) for how to install and use Jekyll.
+Assuming you have [Ruby](https://www.ruby-lang.org/en/downloads/) and [Bundler](https://bundler.io/) installed on your system (*hint: for ease of managing ruby gems, consider using [rbenv](https://github.com/rbenv/rbenv)*), first fork the theme from `github.com:alshedivat/al-folio` to `github.com:<your-username>/<your-repo-name>` and do the following:
 
-
-## Options
-
-Lanyon includes some customizable options, typically applied via classes on the `<body>` element.
-
-
-### Sidebar menu
-
-Create a list of nav links in the sidebar by assigning each Jekyll page the correct layout in the page's [front-matter](http://jekyllrb.com/docs/frontmatter/).
-
-```
----
-layout: page
-title: About
----
+```bash
+$ git clone git@github.com:<your-username>/<your-repo-name>.git
+$ cd <your-repo-name>
+$ bundle install
+$ bundle exec jekyll serve
 ```
 
-**Why require a specific layout?** Jekyll will return *all* pages, including the `atom.xml`, and with an alphabetical sort order. To ensure the first link is *Home*, we exclude the `index.html` page from this list by specifying the `page` layout.
+Now, feel free to customize the theme however you like (don't forget to change the name!).
+After you are done, **commit** your final changes.
+Now, you can deploy your website to [GitHub Pages](https://pages.github.com/) by running the deploy script:
 
+```bash
+$ ./bin/deploy [--user]
+```
+By default, the script uses the `master` branch for the source code and deploys the webpage to `gh-pages`.
+The optional flag `--user` tells it to deploy to `master` and use `source` for the source code instead.
+Using `master` for deployment is a convention for [user and organization pages](https://help.github.com/articles/user-organization-and-project-pages/).
 
-### Themes
+**Note:** when deploying your user or organization page, make the `_config.yml` has `url` and `baseurl` fields as follows.
 
-Lanyon ships with eight optional themes based on the [base16 color scheme](https://github.com/chriskempson/base16). Apply a theme to change the color scheme (mostly applies to sidebar and links).
-
-![Lanyon with red theme](https://f.cloud.github.com/assets/98681/1825270/be065110-71b0-11e3-9ed8-9b8de753a4af.png)
-![Lanyon with red theme and open sidebar](https://f.cloud.github.com/assets/98681/1825269/be05ec20-71b0-11e3-91ea-a9138ef07186.png)
-
-There are eight themes available at this time.
-
-![Available theme classes](https://f.cloud.github.com/assets/98681/1817044/e5b0ec06-6f68-11e3-83d7-acd1942797a1.png)
-
-To use a theme, add any one of the available theme classes to the `<body>` element in the `default.html` layout, like so:
-
-```html
-<body class="theme-base-08">
-  ...
-</body>
+```
+url: # should be empty
+baseurl:  # should be empty
 ```
 
-To create your own theme, look to the Themes section of [included CSS file](https://github.com/poole/lanyon/blob/master/public/css/lanyon.css). Copy any existing theme (they're only a few lines of CSS), rename it, and change the provided colors.
+## Features
 
+#### Ergonomic Publications
 
-### Reverse layout
+Your publications page is generated automatically from your BibTex bibliography.
+Simply edit `_bibliography/papers.bib`.
+You can also add new `*.bib` files and customize the look of your publications however you like by editing `_pages/publications.md`.
 
-![Lanyon with reverse layout](https://f.cloud.github.com/assets/98681/1825265/be03f2e4-71b0-11e3-89f1-360705524495.png)
-![Lanyon with reverse layout and open sidebar](https://f.cloud.github.com/assets/98681/1825268/be056174-71b0-11e3-88c8-5055bca4307f.png)
+Keep meta-information about your co-authors in `_data/coauthors.yml` and Jekyll will insert links to their webpages automatically.
 
-Reverse the page orientation with a single class.
+#### Collections
+This Jekyll theme implements collections to let you break up your work into categories.
+The example is divided into news and projects, but easily revamp this into apps, short stories, courses, or whatever your creative work is.
 
-```html
-<body class="layout-reverse">
-  ...
-</body>
-```
+> To do this, edit the collections in the `_config.yml` file, create a corresponding folder, and create a landing page for your collection, similar to `_pages/projects.md`.
 
+Two different layouts are included: the blog layout, for a list of detailed descriptive list of entries, and the projects layout.
+The projects layout overlays a descriptive hoverover on a background image.
+If no image is provided, the square is auto-filled with the chosen theme color.
+Thumbnail sizing is not necessary, as the grid crops images perfectly.
 
-### Sidebar overlay instead of push
+#### Theming
+Six beautiful theme colors have been selected to choose from.
+The default is purple, but quickly change it by editing `$theme-color` variable in the `_sass/variables.scss` file (line 72).
+Other color variables are listed there, as well.
 
-Make the sidebar overlap the viewport content with a single class:
+#### Photos
+Photo formatting is made simple using rows of a 3-column system.
+Make photos 1/3, 2/3, or full width.
+Easily create beautiful grids within your blog posts and projects pages:
 
-```html
-<body class="sidebar-overlay">
-  ...
-</body>
-```
+<p align="center">
+  <a href="https://alshedivat.github.io/al-folio/projects/1_project/">
+    <img src="assets/img/photos-screenshot.png" width="75%">
+  </a>
+</p>
 
-This will keep the content stationary and slide in the sidebar over the side content. It also adds a `box-shadow` based outline to the toggle for contrast against backgrounds, as well as a `box-shadow` on the sidebar for depth.
+#### Code Highlighting
+This theme implements Jekyll's built in code syntax highlighting with Pygments.
+Just use the liquid tags `{% highlight python %}` and `{% endhighlight %}` to delineate your code:
 
-It's also available for a reversed layout when you add both classes:
+<p align="center">
+  <a href="https://alshedivat.github.io/al-folio/blog/2015/code/">
+    <img src="assets/img/code-screenshot.png" width="75%">
+  </a>
+</p>
 
-```html
-<body class="layout-reverse sidebar-overlay">
-  ...
-</body>
-```
+## Contributing
 
-### Sidebar open on page load
-
-Show an open sidebar on page load by modifying the `<input>` tag within the `sidebar.html` layout to add the `checked` boolean attribute:
-
-```html
-<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" checked>
-```
-
-Using Liquid you can also conditionally show the sidebar open on a per-page basis. For example, here's how you could have it open on the homepage only:
-
-```html
-<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" {% if page.title =="Home" %}checked{% endif %}>
-```
-
-## Development
-
-Lanyon has two branches, but only one is used for active development.
-
-- `master` for development.  **All pull requests should be to submitted against `master`.**
-- `gh-pages` for our hosted site, which includes our analytics tracking code. **Please avoid using this branch.**
-
-
-## Author
-
-**Mark Otto**
-- <https://github.com/mdo>
-- <https://twitter.com/mdo>
-
+Feel free to contribute new features and theme improvements by sending a pull request.
+Style improvements and bug fixes are especially welcome.
 
 ## License
 
-Open sourced under the [MIT license](LICENSE.md).
-
-<3
+MIT
