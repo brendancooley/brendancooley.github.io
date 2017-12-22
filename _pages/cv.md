@@ -49,11 +49,13 @@ Political Economy of Conflict | International Trade | Military Coercion | Game T
 - [International Relations Theory and the Rise of China](https://brendancooley.com/public/SPCL400.303.pdf), Spring 2014<br>
   **University of North Carolina -- Chapel Hill**, [Carolina Students Taking Academic Responsibility Through Teaching (C-START)](http://honorscarolina.unc.edu/academics/c-start/) Program
 
-#### Fieldwork
+#### Research Assistance
 
-- **Accra, Ghana**, June 2016<br>
-  Research Assistant, "Endowment Effect or Institutions: An Experimental Test of the Differential Accountability Hypothesis"<br>
-  **Principal Investigators:** Brandon de la Cuesta, Helen Milner, Dan Nielson, Lucy Martin
+- Kristopher Ramsay, 2017
+- Melissa Lee, 2017
+- "Endowment Effect or Institutions: An Experimental Test of the Differential Accountability Hypothesis," June 2016<br>
+  **Accra, Ghana**<br>
+  Principal Investigators: Brandon de la Cuesta, Helen Milner, Dan Nielson, Lucy Martin
 
 #### Software
 
