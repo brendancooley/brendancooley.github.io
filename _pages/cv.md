@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /cv/
-title: vitae
+title: vita
 description: testing
 ---
 
