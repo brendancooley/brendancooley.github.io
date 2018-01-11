@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Calculating Historical Intercapital Distances
-date: 10 January 2017
+date: 10 January 2018
 description: R code to calculate distances between historical capital cities, 1816-present
 ---
 
