@@ -32,8 +32,8 @@ blog_description: a simple whitespace theme for academics
 
 # Pagination
 paginate: 4
-permalink: /blog/:year/:title/
-paginate_path: /blog/page:num/
+permalink: /notes/:year/:title/
+paginate_path: /notes/page:num/
 
 text:
   pagination:
