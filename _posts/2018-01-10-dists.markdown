@@ -5,8 +5,6 @@ date: 10 January 2018
 description: R code to calculate distances between historical capital cities, 1816-present
 ---
 
-*Last updated 10 January 2018*
-
 Military power degrades with distance. Fighting a war on another continent is, for most militaries, more difficult than fighting at home. Studies of conflict frequently employ capital-to-capital distance (or some transformation of this metric) as one proxy for this loss of strength from power projection (see, for example, (Gartzke and Braithwaite (2011)). Combined with [data on territorial contiguity](http://www.correlatesofwar.org/data-sets/direct-contiguity), these metrics can provide us with a picture of the geographic constraints facing countries contemplating war with one another.
 
 Historical intercapital distance data proved difficult to find however. Most researchers appear to rely on [EuGene](http://eugenesoftware.org/welcome.asp) to generate this data. I wasn't able to track down any documentation on exactly how EuGene does this, however.[^1] Gleditsch and Ward (2001) generated a *minimum* interstate distance dataset, but their data only covers the post-1875 period. For researchers using [Correlates of War](http://www.correlatesofwar.org/) data, distance data would ideally cover 1816 to the present.
