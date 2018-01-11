@@ -5,8 +5,6 @@ date: 10 January 2017
 description: R code to calculate distances between historical capital cities, 1816-present
 ---
 
-# Calculating Historical Intercapital Distances
-
 *Last updated 10 January 2018*
 
 Military power degrades with distance. Fighting a war on another continent is, for most militaries, more difficult than fighting at home. Studies of conflict frequently employ capital-to-capital distance (or some transformation of this metric) as one proxy for this loss of strength from power projection (see, for example, @Gartzke2011). Combined with [data on territorial contiguity](http://www.correlatesofwar.org/data-sets/direct-contiguity), these metrics can provide us with a picture of the geographic constraints facing countries contemplating war with one another.
@@ -19,7 +17,7 @@ Here, I show how to conduct this exercise in R. A clean version of Hensel's hist
 
 
 
-## Capital City Coordinates
+#### Capital City Coordinates
 
 Start by loading up the packages we'll need for analysis:
 
@@ -119,7 +117,7 @@ I then export the geocoded capitals as a csv. You can find these data [here](htt
 write_csv(dists, 'dists.csv')
 ```
 
-## Intercapital Distances
+#### Intercapital Distances
 
 Remember that the point of all this was to generate intercapital distance data for all countries in the COW data. To do this, we want to convert our geocoded capital city data into a dyadic time series that gives the distance between any two countries' capitals for a given year. If there are $N$ countries in the system in a given year $t$, we want to be able to generate an $N \times N$ matrix for that year where each entry is the distance between countries $i$ and $j$.
 
@@ -195,7 +193,7 @@ distM2dydist(distM1816, Britain, Saxony)
 
 These functions can be used in tandem to grab intercapital distances for arbitrary year, dyad pairings.
 
-## Merge with COW War Data
+#### Merge with COW War Data
 
 Conflict researchers often want this data to analyze wars. Now I show how to merge intercapital distance data with COW's inter-state-war data. I clean up the COW war data a bit, which you can see below post-cleaning. In the most basic leve, the data give information about the belligerents in every war and how long each war lasted.
 
@@ -278,7 +276,7 @@ cowWarsDyadic %>% select(WarName, ccode1, State1, ccode2, State2, distance)
 
 The resulting data can be found [here](https://github.com/brendancooley/intercapital-distances/blob/master/cowWarsDist.csv). 
 
-# R Packages
+#### R Packages
 
 Wickham H, Hester J and Francois R (2017). _readr: Read Rectangular Text Data_. R package
 version 1.1.1, <URL: https://CRAN.R-project.org/package=readr>.
@@ -315,7 +313,7 @@ https://CRAN.R-project.org/package=bibtex>.
 Boettiger C (2017). _knitcitations: Citations for 'Knitr' Markdown Files_. R package version
 1.0.8, <URL: https://CRAN.R-project.org/package=knitcitations>.
 
-# References
+##### References
 
 Gartzke, Erik, and Alex Braithwaite. 2011. “Power, Parity and Proximity.”
 
