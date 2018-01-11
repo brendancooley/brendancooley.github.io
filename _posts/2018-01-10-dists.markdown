@@ -106,7 +106,7 @@ write_csv(dists, 'dists.csv')
 
 #### Intercapital Distances
 
-Remember that the point of all this was to generate intercapital distance data for all countries in the COW data. To do this, we want to convert our geocoded capital city data into a dyadic time series that gives the distance between any two countries' capitals for a given year. If there are $N$ countries in the system in a given year $t$, we want to be able to generate an $N \times N$ matrix for that year where each entry is the distance between countries $i$ and $j$.
+Remember that the point of all this was to generate intercapital distance data for all countries in the COW data. To do this, we want to convert our geocoded capital city data into a dyadic time series that gives the distance between any two countries' capitals for a given year. If there are $$ N $$ countries in the system in a given year $t$, we want to be able to generate an $$ N \times N $$ matrix for that year where each entry is the distance between countries $$ i $$ and $$ j $$.
 
 I start by loading up COW's state system membership data, so we know which countries were members of the system for each year. The field "styear" denotes the year the country entered the system, and the field "endyear" gives the year it exited. I then append this data to the distance data. The output is shown below.
 
