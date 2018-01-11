@@ -93,7 +93,7 @@ leaflet(data=dists) %>% addProviderTiles(providers$CartoDB.Positron, options=pro
   setMaxBounds(-180, -90, 180, 90)
 ```
 
-<iframe src="https://cdn.rawgit.com/brendancooley/intercapital-distances/099ee110/dists-map.html" width="700" height="400"></iframe>
+<iframe src="https://cdn.rawgit.com/brendancooley/intercapital-distances/099ee110/dists-map.html" width="700" height="500"></iframe>
 
 I then export the geocoded capitals as a csv. You can find these data [here](https://github.com/brendancooley/intercapital-distances/blob/master/dists.csv).
 
