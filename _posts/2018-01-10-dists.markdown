@@ -313,7 +313,7 @@ https://CRAN.R-project.org/package=bibtex>.
 Boettiger C (2017). _knitcitations: Citations for 'Knitr' Markdown Files_. R package version
 1.0.8, <URL: https://CRAN.R-project.org/package=knitcitations>.
 
-##### References
+#### References
 
 Gartzke, Erik, and Alex Braithwaite. 2011. “Power, Parity and Proximity.”
 
