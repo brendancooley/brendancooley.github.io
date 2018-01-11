@@ -106,10 +106,9 @@ write_csv(dists, 'dists.csv')
 
 #### Intercapital Distances
 
-Remember that the point of all this was to generate intercapital distance data for all countries in the COW data. To do this, we want to convert our geocoded capital city data into a dyadic time series that gives the distance between any two countries' capitals for a given year. If there are $$ N $$ countries in the system in a given year $t$, we want to be able to generate an $$ N \times N $$ matrix for that year where each entry is the distance between countries $$ i $$ and $$ j $$.
+Remember that the point of all this was to generate intercapital distance data for all countries in the COW data. To do this, we want to convert our geocoded capital city data into a dyadic time series that gives the distance between any two countries' capitals for a given year. If there are $$ N $$ countries in the system in a given year $$ t $$, we want to be able to generate an $$ N \times N $$ matrix for that year where each entry is the distance between countries $$ i $$ and $$ j $$.
 
 I start by loading up COW's state system membership data, so we know which countries were members of the system for each year. The field "styear" denotes the year the country entered the system, and the field "endyear" gives the year it exited. I then append this data to the distance data. The output is shown below.
-
 
 ```r
 dists <- read_csv('dists.csv')
@@ -135,7 +134,7 @@ head(dists)
 ## 6    20 Canada       <NA>     1859   1865 Quebec …  46.8 -71.2  1920  2016
 ```
 
-From this dataframe, I can build the $N \times N$ intercapital distance matrix for any year. I wrap this in a function `coord2DistM`, which takes the desired year and the dists dataframe as arguments. It filters the distance data to include only states that were active in that year. It then feeds the latitude and longitude coordinates to the `distm` function from the `geosphere` package, which retuns the desired distance matrix. I convert all distances to kilometers.
+From this dataframe, I can build the $$ N \times N $$ intercapital distance matrix for any year. I wrap this in a function `coord2DistM`, which takes the desired year and the dists dataframe as arguments. It filters the distance data to include only states that were active in that year. It then feeds the latitude and longitude coordinates to the `distm` function from the `geosphere` package, which retuns the desired distance matrix. I convert all distances to kilometers.
 
 The function `distM2dydist` takes this distance matrix and a pair of COW country codes and returns the dyadic distance. Below, I show how to use these functions to build the intercapital distance matrix for the year 1816 and get the distance between Britain and Saxony.
 
