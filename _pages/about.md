@@ -8,9 +8,9 @@ profile:
   align: right
   image: bc.jpg
   address: >
-    <p>031 Corwin Hall</p>
+    <p>300 Fisher Hall</p>
     <p>Princeton University</p>
-    <p>Princeton, NJ 08540</p>
+    <p>Princeton, NJ 08544</p>
 
 news: false
 social: true

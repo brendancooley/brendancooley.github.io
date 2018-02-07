@@ -7,8 +7,11 @@ description:
 
 #### Princeton University
 
+- **Current:** POL 240 / WWS 312: International Relations, Spring 2018 (Preceptor)
+    + Professor: Andrew Moravcsik
+    + [Office Hours](https://wass.princeton.edu/pages/viewcalendar.page.php?cal_id=4207)
 - POL 387: International Intervention and the Use of Force, Fall 2017 (Preceptor)<br>
-  Professor: Melissa Lee
+    + Professor: Melissa Lee
 
 #### Other
 
