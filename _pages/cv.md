@@ -29,7 +29,7 @@ Political Economy of Conflict | International Trade | Military Coercion | Game T
 
 #### Working Papers
 
-- [Trade Wars, Hot Wars, and the Commercial Peace](https://brendancooley.github.io/papers/Cooley_twhw.pdf)
+- [Trade Policy in the Shadow of Power](https://rawgit.com/brendancooley/twhw/master/twhw.pdf)
 
 #### Works in Progress
 
