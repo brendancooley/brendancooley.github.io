@@ -14,7 +14,7 @@ description:
 **Links:**<br>
 
 - [Paper](https://rawgit.com/brendancooley/twhw/master/twhw.pdf)
-- [Slides](https://rawgit.com/brendancooley/twhw/master/twhw_slides.pdf)
+- [Slides](https://rawgit.com/brendancooley/twhw/master/twhw_handout.pdf)
 
 ### Works in Progress
 
