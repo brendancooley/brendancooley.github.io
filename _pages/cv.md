@@ -33,7 +33,7 @@ Political Economy of Conflict | International Trade | Military Coercion | Game T
 
 #### Works in Progress
 
-- Linkages in Security Disputes (with Colin Krainin and Kristopher Ramsay)
+- Monopoly in the Jungle: Prices, Exchange, and Robbery in Predatory Economies (with Colin Krainin and Kristopher Ramsay)
 - Market Structure, Military Coercion, and the International Politics of Oil Production
 
 #### Policy Papers
