@@ -6,7 +6,7 @@ description: testing
 ---
 
 ### Brendan Cooley
-031 Corwin Hall<br>
+300 Fisher Hall<br>
 Princeton University<br>
 Princeton, NJ 08544<br>
 [bcooley@princeton.edu](mailto:bcooley@princeton.edu)
@@ -42,12 +42,14 @@ Political Economy of Conflict | International Trade | Military Coercion | Game T
 
 #### Teaching
 
-- POL 387: International Intervention and the Use of Force, Fall 2017 (Preceptor)<br>
-  **Princeton University**, Professor: Melissa Lee
+- POL 240: / WWS 312: International Relations, Spring 2018 (Preceptor)
+    + **Princeton University**, Professor: Andrew Moravcsik
+- POL 387: International Intervention and the Use of Force, Fall 2017 (Preceptor)
+    + **Princeton University**, Professor: Melissa Lee
 - ENG 102: Introduction to Literary Analysis, Spring 2016<br>
-  **Princeton Prison Teaching Initiative (PTI)**, Garden State Youth Correctional Facility
-- [International Relations Theory and the Rise of China](https://brendancooley.com/public/SPCL400.303.pdf), Spring 2014<br>
-  **University of North Carolina -- Chapel Hill**, [Carolina Students Taking Academic Responsibility Through Teaching (C-START)](http://honorscarolina.unc.edu/academics/c-start/) Program
+    + **Princeton Prison Teaching Initiative (PTI)**, Garden State Youth Correctional Facility
+- [International Relations Theory and the Rise of China](https://brendancooley.com/public/SPCL400.303.pdf), Spring 2014
+    + **University of North Carolina -- Chapel Hill**, [Carolina Students Taking Academic Responsibility Through Teaching (C-START)](http://honorscarolina.unc.edu/academics/c-start/) Program
 
 #### Research Assistance
 
