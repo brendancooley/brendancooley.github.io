@@ -5,6 +5,7 @@ title: vita
 description: testing
 ---
 
+<br>
 [pdf version here](http://brendancooley.com/public/Cooley_cv.pdf)
 
 ### Brendan Cooley
