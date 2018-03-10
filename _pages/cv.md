@@ -5,6 +5,8 @@ title: vita
 description: testing
 ---
 
+[pdf version here](http://brendancooley.com/public/Cooley_cv.pdf)
+
 ### Brendan Cooley
 300 Fisher Hall<br>
 Princeton University<br>
