@@ -2,7 +2,7 @@
 layout: post
 title: Read and Clean ICEWS Coded Event Data
 date: 11 April 2018
-bibliography: "/Users/bcooley/Dropbox/References/library.bib"
+bibliography: /Users/bcooley/Dropbox/References/library.bib
 description: R code to read, clean, and count international dyadic event data
 ---
 
