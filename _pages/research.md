@@ -18,5 +18,4 @@ description:
 
 ### Works in Progress
 
-- Monopoly in the Jungle: Prices, Exchange, and Robbery in Predatory Economies (with Colin Krainin and Kristopher Ramsay)
-- Market Structure, Military Coercion, and the International Politics of Oil Production
+- Prohibition, Theft, and Violence: Monopolistic Pricing and Exchange in Illicit Markets (with Colin Krainin and Kristopher Ramsay)
