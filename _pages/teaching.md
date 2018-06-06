@@ -7,7 +7,7 @@ description:
 
 #### Princeton University
 
-- **Current:** Introduction to Mathematics for Political Science, June-September 2018
+- **Current:** Introduction to Mathematics for Political Science, Summer 2018
     + Introductory mathematics course for incoming Politics Ph.D. students, covering the fundamentals of calculus, probability theory, linear algebra, and real analysis
     + Co-taught with Dan Gibbs
     + [Course Page](http://brendancooley.com/imps2018/)
