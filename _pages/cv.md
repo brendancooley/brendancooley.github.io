@@ -42,8 +42,16 @@ Political Economy of Conflict | International Trade | Military Coercion | Game T
 
 - Cooley, Brendan M. and James Scouras. 2015. ["A Conventional Flexible Response Strategy for the Western Pacific."](http://www.jhuapl.edu/newscenter/publications/pdf/AConventionalFlexibleResponseStrategyfortheWesternPacific.pdf) Johns Hopkins University Applied Physics Lab.
 
+#### Conferences
+
+- EITM: 2018
+- MPSA: 2018
+
 #### Teaching
 
+- Introduction to Mathematics for Political Science, Summer 2018
+    + **Princeton University**, introductory mathematics course for incoming Politics Ph.D. students
+    + [Course Page](http://brendancooley.com/imps2018/)
 - POL 240: / WWS 312: International Relations, Spring 2018 (Preceptor)
     + **Princeton University**, Professor: Andrew Moravcsik
 - POL 387: International Intervention and the Use of Force, Fall 2017 (Preceptor)
