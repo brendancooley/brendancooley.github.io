@@ -6,7 +6,7 @@ description: testing
 ---
 
 <br>
-[pdf version here](http://brendancooley.com/public/Cooley_cv.pdf)
+[pdf version here](https://rawgit.com/brendancooley/brendancooley.github.io/master/public/Cooley_cv.pdf)
 
 ### Brendan Cooley
 300 Fisher Hall<br>
