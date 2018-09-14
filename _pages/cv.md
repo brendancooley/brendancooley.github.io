@@ -8,6 +8,8 @@ description: testing
 <br>
 [pdf version here](https://rawgit.com/brendancooley/brendancooley.github.io/master/public/Cooley_cv.pdf)
 
+*Last updated September 14, 2018*
+
 ### Brendan Cooley
 300 Fisher Hall<br>
 Princeton University<br>
@@ -21,7 +23,8 @@ Political Economy of Conflict | International Trade | Military Coercion | Game T
 
 #### Education
 - **Current**: Ph.D. Candidate, Politics, Princeton University<br>
-  Graduate Student Fellow, [Program in Quantitative and Analytical Political Science (Q-APS)](https://q-aps.princeton.edu/)
+  Graduate Student Fellow, [Program in Quantitative and Analytical Political Science (Q-APS)](https://q-aps.princeton.edu/) <br>
+  Qualifying exams in international relations, formal and quantitative methods, political economy
 
 - B.A., Political Science and Peace, War & Defense, University of North Carolina at Chapel Hill<br>
   May 2014
@@ -36,6 +39,7 @@ Political Economy of Conflict | International Trade | Military Coercion | Game T
 
 #### Works in Progress
 
+- Estimating Policy Barriers to Trade
 - Prohibition, Theft, and Violence: Monopolistic Pricing and Exchange in Illicit Markets (with Colin Krainin and Kristopher Ramsay)
 
 #### Policy Papers
@@ -44,8 +48,8 @@ Political Economy of Conflict | International Trade | Military Coercion | Game T
 
 #### Conferences
 
-- EITM: 2018
-- MPSA: 2018
+- Empirical Implications of Theoretical Models (EITM): 2018
+- Midwest Political Science Association (MPSA): 2018
 
 #### Teaching
 
@@ -61,6 +65,10 @@ Political Economy of Conflict | International Trade | Military Coercion | Game T
 - [International Relations Theory and the Rise of China](https://brendancooley.com/public/SPCL400.303.pdf), Spring 2014
     + **University of North Carolina -- Chapel Hill**, [Carolina Students Taking Academic Responsibility Through Teaching (C-START)](http://honorscarolina.unc.edu/academics/c-start/) Program
 
+#### Referee
+
+- *American Political Science Review*
+
 #### Research Assistance
 
 - Kristopher Ramsay, 2017
@@ -68,6 +76,10 @@ Political Economy of Conflict | International Trade | Military Coercion | Game T
 - "Endowment Effect or Institutions: An Experimental Test of the Differential Accountability Hypothesis," June 2016<br>
   **Accra, Ghana**<br>
   Principal Investigators: Brandon de la Cuesta, Helen Milner, Dan Nielson, Lucy Martin
+
+#### Awards
+
+- Fellowship of Woodrow Wilson Scholars (Princeton University)
 
 #### Software
 

@@ -19,3 +19,4 @@ description:
 ### Works in Progress
 
 - Prohibition, Theft, and Violence: Monopolistic Pricing and Exchange in Illicit Markets (with Colin Krainin and Kristopher Ramsay)
+- Estimating Policy Barriers to Trade
