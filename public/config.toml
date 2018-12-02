@@ -4,7 +4,6 @@ languageCode = "en-us"
 title = "Brendan Cooley"
 theme = "crab"
 baseurl = "http://brendancooley.com"
-publishDir = "docs"
 
 [params]
 first_name = "Brendan"
@@ -22,5 +21,3 @@ description = "Ph.D. Candidate | Department of Politics | Princeton University"
 
 [taxonomies]
 tags = "tags"
-
-# git submodule add -b master git@github.com:brendancooley/brendancooley.github.io.git public

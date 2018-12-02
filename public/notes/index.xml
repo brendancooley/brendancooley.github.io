@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Brendan Cooley</title>
-    <link>http://brendancooley.com/</link>
-    <description>Recent content on Brendan Cooley</description>
+    <title>Notes on Brendan Cooley</title>
+    <link>http://brendancooley.com/notes/</link>
+    <description>Recent content in Notes on Brendan Cooley</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Feb 2017 07:51:49 +0100</lastBuildDate>
     
-	<atom:link href="http://brendancooley.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://brendancooley.com/notes/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Home</title>
-      <link>http://brendancooley.com/home/</link>
-      <pubDate>Sun, 05 Feb 2017 07:51:49 +0100</pubDate>
-      
-      <guid>http://brendancooley.com/home/</guid>
-      <description>testing changes
-300 Fisher Hall Princeton University Princeton, NJ 08544 bcooley@princeton.edu
- Welcome! I&amp;rsquo;m currently a Ph.D. candidate in Politics at Princeton University and a graduate student fellow in The Program for Quantitative and Analytical Political Science (Q-APS). I study the relationship between international economics and militarized conflict, in particular how military coercion affects trade policy. Before coming to Princeton I worked at the Center for Strategic and Budgetary Assessments in Washington D.</description>
-    </item>
     
     <item>
       <title></title>
