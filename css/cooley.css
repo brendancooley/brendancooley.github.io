@@ -261,7 +261,27 @@ ul.pagination {
   text-decoration: none;
 }
 
+@media (max-width: 768px) {
+}
+
 @media (min-width: 768px) {
+  #container {
+    width: 750px;
+  }
+  #article {
+    width: 500px;
+    position: relative;
+  }
+
+  #summary {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 550px;
+    width: 200px;
+    font-family: "Libre Franklin";
+    font-size: 12pt;
+  }
 }
 
 @media (min-width: 992px) {
