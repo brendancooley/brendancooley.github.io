@@ -28,6 +28,10 @@ body {
   font-size: 11pt
 }
 
+br {
+  line-height: 1px;
+}
+
 #container {
   margin: auto;
 }
@@ -93,6 +97,10 @@ a:hover {
 
 #site-slogan {
   margin-top: .75em;
+}
+
+b, strong {
+  font-family: 'Libre Franklin Bold';
 }
 
 nav {
