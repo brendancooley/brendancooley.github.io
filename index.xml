@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Brendan Cooley</title>
+    <link>http://brendancooley.github.io/</link>
+    <description>Recent content on Brendan Cooley</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 05 Feb 2017 07:51:49 +0100</lastBuildDate>
+    
+	<atom:link href="http://brendancooley.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Home</title>
+      <link>http://brendancooley.github.io/home/</link>
+      <pubDate>Sun, 05 Feb 2017 07:51:49 +0100</pubDate>
+      
+      <guid>http://brendancooley.github.io/home/</guid>
+      <description>300 Fisher Hall Princeton University Princeton, NJ 08544 bcooley@princeton.edu
+ I am currently a Ph.D. candidate in Politics at Princeton University. My dissertation, “Trade Policy in the Shadow of Power,” examines how latent military coercion affects patterns of economic exchange in international relations. I use game theoretic models of coercive bargaining and structural gravity models of the international economy to study this question theoretically and empirically. In another line of research, I study exchange and violence in black markets.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brendancooley.github.io/notes/dists/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brendancooley.github.io/notes/dists/</guid>
+      <description>Calculating Historical Intercapital Distances Last updated 10 January 2018
+Military power degrades with distance. Fighting a war on another continent is, for most militaries, more difficult than fighting at home. Studies of conflict frequently employ capital-to-capital distance (or some transformation of this metric) as one proxy for this loss of strength from power projection (see, for example, (Gartzke and Braithwaite (2011)). Combined with data on territorial contiguity, these metrics can provide us with a picture of the geographic constraints facing countries contemplating war with one another.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brendancooley.github.io/notes/icews/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brendancooley.github.io/notes/icews/</guid>
+      <description>Read and Clean ICEWS Coded Event Data Last updated 11 April 2018
+Datasets that researchers use to measure conflict in international relations are generally coarse. The Correlates of War (COW) Project&amp;rsquo;s Militarized Interstate Dispute data records threats, displays, and uses of military force between 1816 and 2010 and COW&amp;rsquo;s interstate war data records conflicts which resulted in at least 1,000 battle deaths. Both MIDs and wars are exceedingly unusual. Yet the &amp;ldquo;stuff&amp;rdquo; of international relations happens every day.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brendancooley.github.io/other/epbt_pricesviz/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brendancooley.github.io/other/epbt_pricesviz/</guid>
+      <description> </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brendancooley.github.io/projects/epbt/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brendancooley.github.io/projects/epbt/</guid>
+      <description>Estimating Policy Barriers to Trade   testing
+ testing testing testing
+ 300 Fisher Hall Princeton University Princeton, NJ 08544 bcooley@princeton.edu
+ </description>
+    </item>
+    
+  </channel>
+</rss>
