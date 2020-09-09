@@ -6,7 +6,6 @@
     <description>Recent content on Brendan Cooley</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Feb 2017 07:51:49 +0100</lastBuildDate>
     
 	<atom:link href="http://brendancooley.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,7 +16,10 @@
       <pubDate>Sun, 05 Feb 2017 07:51:49 +0100</pubDate>
       
       <guid>http://brendancooley.github.io/home/</guid>
-      <description>300 Fisher Hall Princeton University Princeton, NJ 08544 bcooley@princeton.edu
+      <description>300 Fisher Hall
+Princeton University
+Princeton, NJ 08544
+bcooley@princeton.edu
  I am currently a Ph.D. candidate in Politics at Princeton University. My dissertation, “Trade Policy in the Shadow of Power,” seeks to understand how military coercion affects the structure of the international economy &amp;ndash; where economic activity is located and who trades with whom. In another line of research, I study exchange and violence in black markets. I am a graduate fellow affiliated with the Program in Quantitative and Analytical Political Science (Q-APS) at Princeton and teach the Politics Department’s summer math course for incoming graduate students, along with Daniel Gibbs.</description>
     </item>
     
@@ -47,7 +49,7 @@ Datasets that researchers use to measure conflict in international relations are
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://brendancooley.github.io/other/epbt_pricesviz/</guid>
-      <description> </description>
+      <description></description>
     </item>
     
     <item>
@@ -56,7 +58,13 @@ Datasets that researchers use to measure conflict in international relations are
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://brendancooley.github.io/projects/epbt/</guid>
-      <description>Estimating Policy Barriers to Trade   testing  testing testing testing  300 Fisher Hall \\ Princeton University \\ Princeton, NJ 08544 \\ [bcooley@princeton.edu](mailto:bcooley@princeton.edu)  </description>
+      <description>Estimating Policy Barriers to Trade   testing
+ testing testing testing
+ 300 Fisher Hall \
+Princeton University \
+Princeton, NJ 08544 \
+bcooley@princeton.edu
+ </description>
     </item>
     
   </channel>
