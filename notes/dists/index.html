@@ -11,7 +11,7 @@
     <script src="http://brendancooley.github.io/js/jquery-3.3.1.min.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=3.0">
-    <meta name="generator" content="Hugo 0.74.3" />
+    <meta name="generator" content="Hugo 0.79.0" />
 
     <script>
       function resizeIframe(obj) {
@@ -79,7 +79,7 @@ if (!doNotTrack) {
 
   </div>
 
-	<div id="site-slogan">Ph.D. Candidate | Department of Politics | Princeton University</div>
+	<div id="site-slogan"></div>
 
 
 
@@ -118,7 +118,7 @@ dists<span style="color:#f92672">$</span>endDate <span style="color:#f92672">&lt
 ## 4    20 Canada                   &lt;NA&gt;       1843    1849 Montreal
 ## 5    20 Canada                   &lt;NA&gt;       1849    1859 Toronto
 ## 6    20 Canada                   &lt;NA&gt;       1859    1865 Quebec City
-</code></pre><p>Now we need to get the cities&rsquo; coordinates. I simply feed the City, Country tuples to <code>ggmap</code>'s <code>geocode</code> function, which returns lat, lng coordinates if it can find a match in Google&rsquo;s database. If the country has a contemporary name, I use this name for the search in lieu of its old name. I save these coordinates to the <code>dists</code> data frame when they are found. The <code>geocode</code> API imposes some query limits, so it sometimes throws an <code>OVER_QUERY_LIMIT</code> error. If cities remain uncoded, I simply run the loop again, skipping over those that already have coordinates. We can check that the coding worked with the <code>dists %&gt;% filter(is.na(lat))</code>, which should return an empty data frame if all cities have been geocoded.</p>
+</code></pre><p>Now we need to get the cities' coordinates. I simply feed the City, Country tuples to <code>ggmap</code>&rsquo;s <code>geocode</code> function, which returns lat, lng coordinates if it can find a match in Google&rsquo;s database. If the country has a contemporary name, I use this name for the search in lieu of its old name. I save these coordinates to the <code>dists</code> data frame when they are found. The <code>geocode</code> API imposes some query limits, so it sometimes throws an <code>OVER_QUERY_LIMIT</code> error. If cities remain uncoded, I simply run the loop again, skipping over those that already have coordinates. We can check that the coding worked with the <code>dists %&gt;% filter(is.na(lat))</code>, which should return an empty data frame if all cities have been geocoded.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># initialize coordinates</span>
 dists<span style="color:#f92672">$</span>lat <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NA</span>
 dists<span style="color:#f92672">$</span>lng <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NA</span>
@@ -154,7 +154,7 @@ dists<span style="color:#f92672">$</span>lng <span style="color:#f92672">&lt;-</
 <p>I then export the geocoded capitals as a csv. You can find these data <a href="https://github.com/brendancooley/intercapital-distances/blob/master/dists.csv">here</a>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">write_csv</span>(dists, <span style="color:#e6db74">&#39;dists.csv&#39;</span>)
 </code></pre></div><h4 id="intercapital-distances">Intercapital Distances</h4>
-<p>Remember that the point of all this was to generate intercapital distance data for all countries in the COW data. To do this, we want to convert our geocoded capital city data into a dyadic time series that gives the distance between any two countries&rsquo; capitals for a given year. If there are $N$ countries in the system in a given year $t$, we want to be able to generate an $N \times N$ matrix for that year where each entry is the distance between countries $i$ and $j$.</p>
+<p>Remember that the point of all this was to generate intercapital distance data for all countries in the COW data. To do this, we want to convert our geocoded capital city data into a dyadic time series that gives the distance between any two countries' capitals for a given year. If there are $N$ countries in the system in a given year $t$, we want to be able to generate an $N \times N$ matrix for that year where each entry is the distance between countries $i$ and $j$.</p>
 <p>I start by loading up COW&rsquo;s state system membership data, so we know which countries were members of the system for each year. The field &ldquo;styear&rdquo; denotes the year the country entered the system, and the field &ldquo;endyear&rdquo; gives the year it exited. I then append this data to the distance data. The output is shown below.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">dists <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#39;dists.csv&#39;</span>)
 
@@ -230,8 +230,8 @@ cowWars <span style="color:#f92672">&lt;-</span> cowWars <span style="color:#f92
 ## 4 First Russo-Turkish   365 Russia                       1      1828  1829
 ## 5 Mexican-American       70 Mexico                       2      1846  1847
 ## 6 Mexican-American        2 United States of America     1      1846  1847
-</code></pre><p>We want to know the intercapital distance between each pair of belligerents between 1816 and the present. We could use the <code>coord2DistM</code> and <code>distM2dydist</code> but this would require calculating the intercapital distance matrix for every year in which there was a war. A simpler solution is to build a dataframe of capital-years, along with their coordinates, merge this with the war data, and calculate the distance between belligerents, given their capitals&rsquo; coordinates.</p>
-<p>I used the procedure in this <a href="https://stackoverflow.com/questions/28553762/expand-year-range-in-r">stackoverflow post</a> to create the capital-year dataframe. Once merged, I use <code>geosphere</code>'s <code>distVicentySphere</code> function to calculate the distances. The resulting data is shown below the code.</p>
+</code></pre><p>We want to know the intercapital distance between each pair of belligerents between 1816 and the present. We could use the <code>coord2DistM</code> and <code>distM2dydist</code> but this would require calculating the intercapital distance matrix for every year in which there was a war. A simpler solution is to build a dataframe of capital-years, along with their coordinates, merge this with the war data, and calculate the distance between belligerents, given their capitals' coordinates.</p>
+<p>I used the procedure in this <a href="https://stackoverflow.com/questions/28553762/expand-year-range-in-r">stackoverflow post</a> to create the capital-year dataframe. Once merged, I use <code>geosphere</code>&rsquo;s <code>distVicentySphere</code> function to calculate the distances. The resulting data is shown below the code.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># convert capital data to yearly observations</span>
 <span style="color:#75715e"># https://stackoverflow.com/questions/28553762/expand-year-range-in-r</span>
 distsYear <span style="color:#f92672">&lt;-</span> dists
