@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Brendan Cooley – dists</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#calculating-historical-intercapital-distances" id="toc-calculating-historical-intercapital-distances" class="nav-link active" data-scroll-target="#calculating-historical-intercapital-distances">Calculating Historical Intercapital Distances</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="calculating-historical-intercapital-distances" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-historical-intercapital-distances">Calculating Historical Intercapital Distances</h2>
+<p><em>Last updated 10 January 2018</em></p>
+<p>Military power degrades with distance. Fighting a war on another continent is, for most militaries, more difficult than fighting at home. Studies of conflict frequently employ capital-to-capital distance (or some transformation of this metric) as one proxy for this loss of strength from power projection (see, for example, (Gartzke and Braithwaite (2011)). Combined with <a href="http://www.correlatesofwar.org/data-sets/direct-contiguity">data on territorial contiguity</a>, these metrics can provide us with a picture of the geographic constraints facing countries contemplating war with one another.</p>
+<p>Historical intercapital distance data proved difficult to find however. Most researchers appear to rely on <a href="http://eugenesoftware.org/welcome.asp">EuGene</a> to generate this data. I wasn’t able to track down any documentation on exactly how EuGene does this, however.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Gleditsch and Ward (2001) generated a <em>minimum</em> interstate distance dataset, but their data only covers the post-1875 period. For researchers using <a href="http://www.correlatesofwar.org/">Correlates of War</a> data, distance data would ideally cover 1816 to the present.</p>
+<p>It turns out that it’s not too difficult to build intercapital distance data from scratch, however. All that is required is data on the <em>names</em> of capital cities for each state system member for every year between 1816 and the present. Paul Hensel’s <a href="http://www.paulhensel.org/icownames.html">ICOW Historical State Names dataset</a> provides this information. We can then use Google’s <a href="https://developers.google.com/maps/documentation/geocoding/start">Geocoding API</a> through the <code>ggmap</code> R package to get the coordinates of each historical capital, which can then be used to generate intercapital distance matrices.</p>
+<p>Here, I show how to conduct this exercise in R. A clean version of Hensel’s historical capital dataset is available <a href="https://github.com/brendancooley/intercapital-distances/blob/master/capitals.csv">here</a>. I’ve included all of the data and software necessary to generate this data on <a href="https://github.com/brendancooley/intercapital-distances">Github</a>. Feel free to send along questions, comments, or suggestions for improvement to <a href="mailto:bcooley@princeton.edu">bcooley@princeton.edu</a>.</p>
+<section id="capital-city-coordinates" class="level4">
+<h4 class="anchored" data-anchor-id="capital-city-coordinates">Capital City Coordinates</h4>
+<p>Start by loading up the packages we’ll need for analysis:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>libs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'readr'</span>, <span class="st">'dplyr'</span>, <span class="st">'tidyr'</span>, <span class="st">'ggmap'</span>, <span class="st">'geosphere'</span>, <span class="st">'leaflet'</span>, <span class="st">'knitr'</span>, <span class="st">'bibtex'</span>, <span class="st">'knitcitations'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(libs, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I started by cleaning up Hensel’s data a bit in excel. Each capital city is listed as its own observation, along with the country, its COW code, and the first and last year the city served as a capital. Because the Hensel data is coded annually, I take the country’s capital at the start of any given year to be its capital for that entire year. For countries that no longer exist (e.g.&nbsp;Mecklenburg-Schwerin) I provide a contemporary alternative country name (aName) to help Google locate the city’s coordinates. The assumption underlying this procedure is that the cities that served as capitals historically have not moved from their historical location (if I’m missing any instances where this occured please let me know). We can take a look at the data below:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dists <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'capitals.csv'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Hensel's data run from 1800-2016, set bounds</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>dists<span class="sc">$</span>startDate <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(dists<span class="sc">$</span>startDate), <span class="dv">1800</span>, dists<span class="sc">$</span>startDate)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>dists<span class="sc">$</span>endDate <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(dists<span class="sc">$</span>endDate), <span class="dv">2016</span>, dists<span class="sc">$</span>endDate)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   ccode Name                     aName startDate endDate Capital
+##   &lt;int&gt; &lt;chr&gt;                    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;
+## 1     2 United States of America &lt;NA&gt;       1800    2016 Washington D.C.
+## 2    20 Canada                   &lt;NA&gt;       1800    1841 Ottawa
+## 3    20 Canada                   &lt;NA&gt;       1841    1843 Kingston
+## 4    20 Canada                   &lt;NA&gt;       1843    1849 Montreal
+## 5    20 Canada                   &lt;NA&gt;       1849    1859 Toronto
+## 6    20 Canada                   &lt;NA&gt;       1859    1865 Quebec City</code></pre>
+<p>Now we need to get the cities’ coordinates. I simply feed the City, Country tuples to <code>ggmap</code>’s <code>geocode</code> function, which returns lat, lng coordinates if it can find a match in Google’s database. If the country has a contemporary name, I use this name for the search in lieu of its old name. I save these coordinates to the <code>dists</code> data frame when they are found. The <code>geocode</code> API imposes some query limits, so it sometimes throws an <code>OVER_QUERY_LIMIT</code> error. If cities remain uncoded, I simply run the loop again, skipping over those that already have coordinates. We can check that the coding worked with the <code>dists %&gt;% filter(is.na(lat))</code>, which should return an empty data frame if all cities have been geocoded.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize coordinates</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dists<span class="sc">$</span>lat <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>dists<span class="sc">$</span>lng <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># run until all cities have been coded</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(<span class="fu">nrow</span>(dists <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(lat))) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for each city</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dists)) {</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># skip if it's already been coded</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(dists[i,]<span class="sc">$</span>lat)) {</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">is.na</span>(dists[i,]<span class="sc">$</span>aName)) {</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># query City, Country for each capital</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        query <span class="ot">&lt;-</span> <span class="fu">paste0</span>(dists[i, ]<span class="sc">$</span>Capital, <span class="st">", "</span>, dists[i, ]<span class="sc">$</span>Name)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        latlng <span class="ot">&lt;-</span> <span class="fu">geocode</span>(query)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        dists[i, ]<span class="sc">$</span>lat <span class="ot">&lt;-</span> latlng<span class="sc">$</span>lat</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        dists[i, ]<span class="sc">$</span>lng <span class="ot">&lt;-</span> latlng<span class="sc">$</span>lon</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span> {</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># use alternative country name</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        query <span class="ot">&lt;-</span> <span class="fu">paste0</span>(dists[i, ]<span class="sc">$</span>Capital, <span class="st">", "</span>, dists[i, ]<span class="sc">$</span>aName)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        latlng <span class="ot">&lt;-</span> <span class="fu">geocode</span>(query)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        dists[i, ]<span class="sc">$</span>lat <span class="ot">&lt;-</span> latlng<span class="sc">$</span>lat</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        dists[i, ]<span class="sc">$</span>lng <span class="ot">&lt;-</span> latlng<span class="sc">$</span>lon</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can check to make sure the cities were coded correctly by plotting them on a map. Clicking on the city will show a popup with its name. I poked around this map a bit and everything seemed to land in the right spot.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(<span class="at">data=</span>dists) <span class="sc">%&gt;%</span> <span class="fu">addProviderTiles</span>(providers<span class="sc">$</span>CartoDB.Positron, <span class="at">options=</span><span class="fu">providerTileOptions</span>(<span class="at">minZoom =</span> <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(<span class="sc">~</span>lng, <span class="sc">~</span>lat, <span class="at">popup=</span><span class="sc">~</span>Capital, <span class="at">radius=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setMaxBounds</span>(<span class="sc">-</span><span class="dv">180</span>, <span class="sc">-</span><span class="dv">90</span>, <span class="dv">180</span>, <span class="dv">90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<iframe src="https://cdn.rawgit.com/brendancooley/intercapital-distances/099ee110/dists-map.html" width="700" height="500">
+</iframe>
+<p>I then export the geocoded capitals as a csv. You can find these data <a href="https://github.com/brendancooley/intercapital-distances/blob/master/dists.csv">here</a>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(dists, <span class="st">'dists.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="intercapital-distances" class="level4">
+<h4 class="anchored" data-anchor-id="intercapital-distances">Intercapital Distances</h4>
+<p>Remember that the point of all this was to generate intercapital distance data for all countries in the COW data. To do this, we want to convert our geocoded capital city data into a dyadic time series that gives the distance between any two countries’ capitals for a given year. If there are <span class="math inline">\(N\)</span> countries in the system in a given year <span class="math inline">\(t\)</span>, we want to be able to generate an <span class="math inline">\(N \times N\)</span> matrix for that year where each entry is the distance between countries <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>.</p>
+<p>I start by loading up COW’s state system membership data, so we know which countries were members of the system for each year. The field “styear” denotes the year the country entered the system, and the field “endyear” gives the year it exited. I then append this data to the distance data. The output is shown below.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dists <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'dists.csv'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># get state system membership (COW)</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>sysMemUrl <span class="ot">&lt;-</span> <span class="st">"http://www.correlatesofwar.org/data-sets/state-system-membership/states2016/at_download/file"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>sysMem <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(sysMemUrl) <span class="sc">%&gt;%</span> <span class="fu">select</span>(ccode, styear, endyear)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>dists <span class="ot">&lt;-</span> <span class="fu">left_join</span>(dists, sysMem, <span class="at">by=</span><span class="st">"ccode"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## # A tibble: 6 x 10
+##   ccode Name         aName startD… endDa… Capital    lat   lng stye… endy…
+##   &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;   &lt;int&gt;  &lt;int&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
+## 1     2 United Stat… &lt;NA&gt;     1800   2016 Washing…  38.9 -77.0  1816  2016
+## 2    20 Canada       &lt;NA&gt;     1800   1841 Ottawa    45.4 -75.7  1920  2016
+## 3    20 Canada       &lt;NA&gt;     1841   1843 Kingston  44.2 -76.5  1920  2016
+## 4    20 Canada       &lt;NA&gt;     1843   1849 Montreal  45.5 -73.6  1920  2016
+## 5    20 Canada       &lt;NA&gt;     1849   1859 Toronto   43.7 -79.4  1920  2016
+## 6    20 Canada       &lt;NA&gt;     1859   1865 Quebec …  46.8 -71.2  1920  2016</code></pre>
+<p>From this dataframe, I can build the <span class="math inline">\(N \times N\)</span> intercapital distance matrix for any year. I wrap this in a function <code>coord2DistM</code>, which takes the desired year and the dists dataframe as arguments. It filters the distance data to include only states that were active in that year. It then feeds the latitude and longitude coordinates to the <code>distm</code> function from the <code>geosphere</code> package, which retuns the desired distance matrix. I convert all distances to kilometers.</p>
+<p>The function <code>distM2dydist</code> takes this distance matrix and a pair of COW country codes and returns the dyadic distance. Below, I show how to use these functions to build the intercapital distance matrix for the year 1816 and get the distance between Britain and Saxony.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: assigns capital to city that was capital at beginning of year</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>coord2DistM <span class="ot">&lt;-</span> <span class="cf">function</span>(dists, year) {</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter by system membership, then relevant capital</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  distsY <span class="ot">&lt;-</span> dists <span class="sc">%&gt;%</span> <span class="fu">filter</span>(styear <span class="sc">&lt;=</span> year, endyear <span class="sc">&gt;=</span> year) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(startDate <span class="sc">&lt;</span> year <span class="sc">&amp;</span> endDate <span class="sc">&gt;=</span> year)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># check that one capital returned per country</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(<span class="fu">unique</span>(distsY<span class="sc">$</span>Capital)) <span class="sc">!=</span> <span class="fu">length</span>(<span class="fu">unique</span>(distsY<span class="sc">$</span>Name))) {</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">'error: nCountries != nCapitals, check underlying coordinate data'</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># get distance matrix for selected year</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    latlng <span class="ot">&lt;-</span> distsY <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">'lng'</span>, <span class="st">'lat'</span>) <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>()</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    distsYmatrix <span class="ot">&lt;-</span> <span class="fu">distm</span>(latlng, latlng, <span class="at">fun=</span>distVincentySphere)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    distsYmatrix <span class="ot">&lt;-</span> distsYmatrix <span class="sc">/</span> <span class="dv">1000</span>  <span class="co"># convert to km</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames</span>(distsYmatrix) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(distsYmatrix) <span class="ot">&lt;-</span> distsY<span class="sc">$</span>ccode</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(distsYmatrix)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># get distance between i and j</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>distM2dydist <span class="ot">&lt;-</span> <span class="cf">function</span>(distM, ccode1, ccode2) {</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(distM[ccode1, ccode2])</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co"># application</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="dv">1816</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>Britain <span class="ot">&lt;-</span> <span class="st">"200"</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>Saxony <span class="ot">&lt;-</span> <span class="st">"269"</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>distM1816 <span class="ot">&lt;-</span> <span class="fu">coord2DistM</span>(dists, year)</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="fu">distM2dydist</span>(distM1816, Britain, Saxony)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## [1] 965.3628</code></pre>
+<p>These functions can be used in tandem to grab intercapital distances for arbitrary year, dyad pairings.</p>
+</section>
+<section id="merge-with-cow-war-data" class="level4">
+<h4 class="anchored" data-anchor-id="merge-with-cow-war-data">Merge with COW War Data</h4>
+<p>Conflict researchers often want this data to analyze wars. Now I show how to merge intercapital distance data with COW’s inter-state-war data. I clean up the COW war data a bit, which you can see below post-cleaning. In the most basic leve, the data give information about the belligerents in every war and how long each war lasted.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># append to COW wars data</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>warUrl <span class="ot">&lt;-</span> <span class="st">"http://www.correlatesofwar.org/data-sets/COW-war/inter-state-war-data/at_download/file"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>cowWars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(warUrl)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># for simplicity, ignore armistices</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>cowWars<span class="sc">$</span>StartYear <span class="ot">&lt;-</span> cowWars<span class="sc">$</span>StartYear1</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>cowWars<span class="sc">$</span>EndYear <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(cowWars<span class="sc">$</span>EndYear2 <span class="sc">==</span> <span class="sc">-</span><span class="dv">8</span>, cowWars<span class="sc">$</span>EndYear1, cowWars<span class="sc">$</span>EndYear2)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>cowWars <span class="ot">&lt;-</span> cowWars <span class="sc">%&gt;%</span> <span class="fu">select</span>(WarName, ccode, StateName, Side, StartYear, EndYear)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cowWars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   WarName             ccode StateName                 Side StartYear EndY…
+##   &lt;chr&gt;               &lt;int&gt; &lt;chr&gt;                    &lt;int&gt;     &lt;int&gt; &lt;int&gt;
+## 1 Franco-Spanish War    230 Spain                        2      1823  1823
+## 2 Franco-Spanish War    220 France                       1      1823  1823
+## 3 First Russo-Turkish   640 Ottoman Empire               2      1828  1829
+## 4 First Russo-Turkish   365 Russia                       1      1828  1829
+## 5 Mexican-American       70 Mexico                       2      1846  1847
+## 6 Mexican-American        2 United States of America     1      1846  1847</code></pre>
+<p>We want to know the intercapital distance between each pair of belligerents between 1816 and the present. We could use the <code>coord2DistM</code> and <code>distM2dydist</code> but this would require calculating the intercapital distance matrix for every year in which there was a war. A simpler solution is to build a dataframe of capital-years, along with their coordinates, merge this with the war data, and calculate the distance between belligerents, given their capitals’ coordinates.</p>
+<p>I used the procedure in this <a href="https://stackoverflow.com/questions/28553762/expand-year-range-in-r">stackoverflow post</a> to create the capital-year dataframe. Once merged, I use <code>geosphere</code>’s <code>distVicentySphere</code> function to calculate the distances. The resulting data is shown below the code.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert capital data to yearly observations</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/28553762/expand-year-range-in-r</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>distsYear <span class="ot">&lt;-</span> dists</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>distsYear<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">mapply</span>(seq, distsYear<span class="sc">$</span>startDate, distsYear<span class="sc">$</span>endDate, <span class="at">SIMPLIFY=</span><span class="cn">FALSE</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>distsYear <span class="ot">&lt;-</span> distsYear <span class="sc">%&gt;%</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ccode, year, lat, lng)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># get capital in start year</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>cowWars<span class="sc">$</span>year <span class="ot">&lt;-</span> cowWars<span class="sc">$</span>StartYear</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># append coords for each side</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>cowWars1 <span class="ot">&lt;-</span> cowWars <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Side <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(distsYear, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"ccode"</span>, <span class="st">"year"</span>)) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">State1 =</span> StateName, <span class="at">ccode1 =</span> ccode, <span class="at">lat1 =</span> lat, <span class="at">lng1 =</span> lng) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>Side)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>cowWars2 <span class="ot">&lt;-</span> cowWars <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Side <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(distsYear, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"ccode"</span>, <span class="st">"year"</span>)) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">State2 =</span> StateName, <span class="at">ccode2 =</span> ccode, <span class="at">lat2 =</span> lat, <span class="at">lng2 =</span> lng) <span class="sc">%&gt;%</span> <span class="fu">select</span>(WarName, State2, ccode2, lat2, lng2)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>cowWarsDyadic <span class="ot">&lt;-</span> <span class="fu">left_join</span>(cowWars1, cowWars2, <span class="at">by=</span><span class="st">"WarName"</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(WarName, ccode1, State1, ccode2, State2, year, lng1, lat1, lng2, lat2)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate distance</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>latlng1 <span class="ot">&lt;-</span> cowWarsDyadic <span class="sc">%&gt;%</span> <span class="fu">select</span>(lng1, lat1)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>latlng2 <span class="ot">&lt;-</span> cowWarsDyadic <span class="sc">%&gt;%</span> <span class="fu">select</span>(lng2, lat2)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>cowWarsDyadic<span class="sc">$</span>distance <span class="ot">&lt;-</span> <span class="fu">distVincentySphere</span>(latlng1, latlng2) <span class="sc">/</span> <span class="dv">1000</span>  <span class="co"># convert to km</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co"># export data</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(cowWarsDyadic, <span class="st">'cowWarsDist.csv'</span>)</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>cowWarsDyadic <span class="sc">%&gt;%</span> <span class="fu">select</span>(WarName, ccode1, State1, ccode2, State2, distance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## # A tibble: 813 x 6
+##    WarName                  ccode1 State1          ccode2 State2    dista…
+##    &lt;chr&gt;                     &lt;int&gt; &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt;
+##  1 Franco-Spanish War          220 France             230 Spain       1054
+##  2 Franco-Spanish War          220 France             230 Spain       1054
+##  3 First Russo-Turkish         365 Russia             640 Ottoman …   2233
+##  4 Mexican-American              2 United States …     70 Mexico      3035
+##  5 Austro-Sardinian            300 Austria            337 Tuscany      632
+##  6 Austro-Sardinian            300 Austria            325 Italy        765
+##  7 Austro-Sardinian            300 Austria            332 Modena       575
+##  8 First Schleswig-Holstein    255 Prussia            390 Denmark      356
+##  9 First Schleswig-Holstein    255 Prussia            390 Denmark      356
+## 10 First Schleswig-Holstein    255 Prussia            390 Denmark      356
+## # ... with 803 more rows</code></pre>
+<p>The resulting data can be found <a href="https://github.com/brendancooley/intercapital-distances/blob/master/cowWarsDist.csv">here</a>.</p>
+</section>
+<section id="r-packages" class="level4">
+<h4 class="anchored" data-anchor-id="r-packages">R Packages</h4>
+<p>Wickham H, Hester J and Francois R (2017). <em>readr: Read Rectangular Text Data</em>. R package version 1.1.1, &lt;URL: https://CRAN.R-project.org/package=readr&gt;.</p>
+<p>Wickham H, Francois R, Henry L and Müller K (2017). <em>dplyr: A Grammar of Data Manipulation</em>. R package version 0.7.4, &lt;URL: https://CRAN.R-project.org/package=dplyr&gt;.</p>
+<p>Wickham H and Henry L (2017). <em>tidyr: Easily Tidy Data with ‘spread()’ and ‘gather()’ Functions</em>. R package version 0.7.2, &lt;URL: https://CRAN.R-project.org/package=tidyr&gt;.</p>
+<p>Kahle D and Wickham H (2013). “ggmap: Spatial Visualization with ggplot2.” <em>The R Journal</em>, <em>5</em>(1), pp.&nbsp;144-161. &lt;URL: http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf&gt;.</p>
+<p>Hijmans RJ (2016). <em>geosphere: Spherical Trigonometry</em>. R package version 1.5-5, &lt;URL: https://CRAN.R-project.org/package=geosphere&gt;.</p>
+<p>Cheng J, Karambelkar B and Xie Y (2017). <em>leaflet: Create Interactive Web Maps with the JavaScript ‘Leaflet’ Library</em>. R package version 1.1.0, &lt;URL: https://CRAN.R-project.org/package=leaflet&gt;.</p>
+<p>Xie Y (2017). <em>knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. R package version 1.18, &lt;URL: https://yihui.name/knitr/&gt;.</p>
+<p>Xie Y (2015). <em>Dynamic Documents with R and knitr</em>, 2nd edition. Chapman and Hall/CRC, Boca Raton, Florida. ISBN 978-1498716963, &lt;URL: https://yihui.name/knitr/&gt;.</p>
+<p>Xie Y (2014). “knitr: A Comprehensive Tool for Reproducible Research in R.” In Stodden V, Leisch F and Peng RD (eds.), <em>Implementing Reproducible Computational Research</em>. Chapman and Hall/CRC. ISBN 978-1466561595, &lt;URL: http://www.crcpress.com/product/isbn/9781466561595&gt;.</p>
+<p>Francois R (2017). <em>bibtex: Bibtex Parser</em>. R package version 0.4.2, &lt;URL: https://CRAN.R-project.org/package=bibtex&gt;.</p>
+<p>Boettiger C (2017). <em>knitcitations: Citations for ‘Knitr’ Markdown Files</em>. R package version 1.0.8, &lt;URL: https://CRAN.R-project.org/package=knitcitations&gt;.</p>
+</section>
+<section id="references" class="level4">
+<h4 class="anchored" data-anchor-id="references">References</h4>
+<p>Gartzke, Erik, and Alex Braithwaite. 2011. “Power, Parity and Proximity.”</p>
+<p>Gleditsch, Kristian S, and Michael D Ward. 2001. “Measuring space: A minimum-distance database and applications to international studies.” Journal of Peace Research 38 (6).</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Tips on where to find this documentation are more than welcome.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

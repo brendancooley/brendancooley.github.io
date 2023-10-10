@@ -1,0 +1,18 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Brendan Cooley"
+  open-graph: true
+  site-url: "https://brendancooley.com"
+  twitter-card: true
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    toc: true
+
+
+

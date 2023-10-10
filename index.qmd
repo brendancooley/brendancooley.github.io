@@ -1,0 +1,47 @@
+---
+title: "Brendan Cooley"
+toc: false
+---
+
+{{< fa brands github >}} [GitHub](https://github.com/brendancooley) &emsp; {{< fa brands twitter >}} [Twitter](https://twitter.com/brendanmcooley) &emsp; {{< fa brands linkedin >}} [LinkedIn](https://www.linkedin.com/in/brendan-cooley-a3559433/) &emsp; {{< fa file-pdf >}} [CV](content/docs/Cooley_cv.pdf)
+
+I currently work on Bayesian inference and computation and develop machine learning pipelines at [Big League Advantage](https://bigleagueadvantage.com/). I received my Ph.D. in Politics at Princeton University in 2020. In my dissertation research, I estimated a model of the world political economy to quantify how military coercion affects international trade. At Princeton, I taught the Politics Department’s summer math course for incoming graduate students, along with [Daniel Gibbs](http://www.daniel-gibbs.com/).
+
+I'm interested in baseball, cities, open source software, and open science. I live in the Washington, DC area.
+
+## Some Stuff I Worked on in Grad School
+
+### Dissertation
+
+| Trade Policy in the Shadow of Power: Theory and Evidence on Economic Openness and Coercive Diplomacy
+| &emsp;  {{< fa file-pdf >}} [Introduction](content/docs/diss_intro.pdf) &emsp; {{< fa film >}} [Slides](diss)
+
+### Working Papers
+
+| Trade Policy in the Shadow of Power: Quantifying Military Coercion in the International System
+| &emsp; {{< fa file-pdf >}} [PDF](docs/tpsp.pdf) &emsp; {{< fa film >}}[Slides](tpsp)
+
+| Gunshots and Turf Wars: Inferring Gang Territories from Shooting Reports (with [Noam Reich](http://noamreich.com/))
+| &emsp; {{< fa file-pdf >}} [PDF](docs/gangs.pdf) &emsp; {{< fa film >}} [Slides](gangs)
+
+| Estimating Policy Barriers to Trade
+| &emsp; {{< fa file-pdf >}} [PDF](docs/epbt.pdf) &emsp; {{< fa film >}} [Slides](epbt)
+
+| Gunboat Diplomacy: Political Bias, Trade Policy, and War
+| &emsp; {{< fa file-pdf >}} [PDF](docs/gunboats.pdf) &emsp; {{< fa film >}} [Slides](gunboats) &emsp; {{< fa brands youtube >}} [OPSC Talk](https://www.youtube.com/watch?v=qf_cV_GQwk8&t=5s)
+
+### Teaching
+
+- [Introduction to Mathematics for Political Science](http://brendancooley.com/imps2019/) (with [Daniel Gibbs](http://www.daniel-gibbs.com/))
+
+## Notes
+
+| [Calculating Historical Intercapital Distances](content/notes/dists.md)
+| &emsp; R code to calculate distances between historical capital cities, 1816-present
+
+| [Read and Clean ICEWS Coded Event Data](content/notes/icews.md)
+| &emsp; R code to read, clean, and count international dyadic event data
+
+## Other
+
+In 2021 I [recorded a podcast](https://podcasts.apple.com/us/podcast/26-trade-war-and-china-with-brendan-cooley/id1525164585?i=1000506571235) for Narratives with Will Jarvis. We chatted about why China and the United States don't get along.
