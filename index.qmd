@@ -19,16 +19,16 @@ I'm interested in baseball, cities, open source software, and open science. I li
 ### Working Papers
 
 | Trade Policy in the Shadow of Power: Quantifying Military Coercion in the International System
-| &emsp; {{< fa file-pdf >}} [PDF](docs/tpsp.pdf) &emsp; {{< fa film >}}[Slides](tpsp)
+| &emsp; {{< fa file-pdf >}} [PDF](content/docs/tpsp.pdf) &emsp; {{< fa film >}}[Slides](tpsp)
 
 | Gunshots and Turf Wars: Inferring Gang Territories from Shooting Reports (with [Noam Reich](http://noamreich.com/))
-| &emsp; {{< fa file-pdf >}} [PDF](docs/gangs.pdf) &emsp; {{< fa film >}} [Slides](gangs)
+| &emsp; {{< fa file-pdf >}} [PDF](content/docs/gangs.pdf) &emsp; {{< fa film >}} [Slides](gangs)
 
 | Estimating Policy Barriers to Trade
-| &emsp; {{< fa file-pdf >}} [PDF](docs/epbt.pdf) &emsp; {{< fa film >}} [Slides](epbt)
+| &emsp; {{< fa file-pdf >}} [PDF](content/docs/epbt.pdf) &emsp; {{< fa film >}} [Slides](epbt)
 
 | Gunboat Diplomacy: Political Bias, Trade Policy, and War
-| &emsp; {{< fa file-pdf >}} [PDF](docs/gunboats.pdf) &emsp; {{< fa film >}} [Slides](gunboats) &emsp; {{< fa brands youtube >}} [OPSC Talk](https://www.youtube.com/watch?v=qf_cV_GQwk8&t=5s)
+| &emsp; {{< fa file-pdf >}} [PDF](content/docs/gunboats.pdf) &emsp; {{< fa film >}} [Slides](gunboats) &emsp; {{< fa brands youtube >}} [OPSC Talk](https://www.youtube.com/watch?v=qf_cV_GQwk8&t=5s)
 
 ### Teaching
 
