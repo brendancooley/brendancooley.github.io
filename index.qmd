@@ -5,7 +5,7 @@ toc: false
 
 {{< fa brands github >}} [GitHub](https://github.com/brendancooley) &emsp; {{< fa brands twitter >}} [Twitter](https://twitter.com/brendanmcooley) &emsp; {{< fa brands linkedin >}} [LinkedIn](https://www.linkedin.com/in/brendan-cooley-a3559433/)
 
-I currently work on Bayesian inference and computation and develop machine learning pipelines at [Big League Advantage](https://bigleagueadvantage.com/). I received my Ph.D. in Politics at Princeton University in 2020. In my dissertation research, I estimated a model of the world political economy to quantify how military coercion affects international trade. At Princeton, I taught the Politics Department’s summer math course for incoming graduate students, along with [Daniel Gibbs](http://www.daniel-gibbs.com/).
+I currently work as a quantitative analyst for the Los Angeles Dodgers. I received my Ph.D. in Politics at Princeton University in 2020. In my dissertation research, I estimated a model of the world political economy to quantify how military coercion affects international trade. At Princeton, I taught the Politics Department’s summer math course for incoming graduate students, along with [Daniel Gibbs](http://www.daniel-gibbs.com/).
 
 I'm interested in baseball, cities, open source software, and open science. I live in the Washington, DC area.
 
