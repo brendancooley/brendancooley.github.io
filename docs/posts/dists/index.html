@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  
+  
+    
+  
+  <meta name="description" content="R code to calculate distances between historical capital cities, 1816-present">
+
+  <title>Calculating Historical Intercapital Distances</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://brendancooley.com/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://brendancooley.com/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://brendancooley.com/img/apple-touch-icon.png">
+  
+  <style>
+
+  /* light mode colors */
+  body {
+    --primary-color: #5871a2;
+    --primary-pale-color: #5871a233;
+    --primary-decoration-color: #5871a210;
+    --bg-color: #ffffff;
+    --text-color: #2f3030;
+    --text-pale-color: #767676;
+    --text-decoration-color: #a9a9a9;
+    --highlight-mark-color: #5f75b020;
+
+    --callout-note-color: #5871a2;
+    --callout-tip-color: #268556;
+    --callout-important-color: #885fc9;
+    --callout-warning-color: #ab6632;
+    --callout-caution-color: #c64e4e;
+  }
+
+  /* dark mode colors */
+  body.dark {
+    --primary-color: #6f8fd1;
+    --primary-pale-color: #6f8fd166;
+    --primary-decoration-color: #6f8fd112;
+    --bg-color: #1c1c1c;
+    --text-color: #c1c1c1;
+    --text-pale-color: #848484;
+    --text-decoration-color: #5f5f5f;
+    --highlight-mark-color: #8296cb3b;
+
+    --callout-note-color: #6f8fd1;
+    --callout-tip-color: #47976f;
+    --callout-important-color: #9776cd;
+    --callout-warning-color: #ad7a52;
+    --callout-caution-color: #d06161;
+  }
+
+  /* typography */
+  body {
+    --main-font: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --code-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    --homepage-max-width: 768px;
+    --main-max-width: 768px;
+    --avatar-size: 60px;
+    --font-size: 16px;
+    --line-height: 1.75;
+    --img-border-radius: 0px;
+    --detail-border-radius: 0px;
+    --dark-mode-img-brightness: 0.75;
+    --dark-mode-chart-brightness: 0.75;
+    --inline-code-border-radius: 2px;
+    --inline-code-bg-color: var(--primary-decoration-color);
+    --block-code-border-radius: 0px;
+    --block-code-border-color: var(--primary-color);
+    --detail-border-color: var(--primary-color);
+  }
+
+</style>
+
+  <link rel="stylesheet" href="https://brendancooley.com/main.css">
+  
+
+<link id="hl" rel="stylesheet" type="text/css" href="/hl-light.css" />
+
+
+
+  
+</head>
+
+<body class="post">
+  
+  <script>
+    const theme = sessionStorage.getItem('theme');
+    const match = window.matchMedia("(prefers-color-scheme: dark)").matches
+    if ((theme && theme == 'dark') || (!theme && match)) {
+      document.body.classList.add('dark');
+      const hl = document.querySelector('link#hl');
+      if (hl) hl.href = 'https://brendancooley.com/hl-dark.css';
+    }
+  </script>
+  
+  
+<div id="wrapper">
+  <div id="blank"></div>
+  <aside>
+    
+    
+    <nav>
+      <ul>
+        
+        <li>
+          <a class="h2" href="#capital-city-coordinates">Capital City Coordinates</a>
+          
+        </li>
+        
+        <li>
+          <a class="h2" href="#intercapital-distances">Intercapital Distances</a>
+          
+        </li>
+        
+        <li>
+          <a class="h2" href="#merge-with-cow-war-data">Merge with COW War Data</a>
+          
+        </li>
+        
+        <li>
+          <a class="h2" href="#r-packages">R Packages</a>
+          
+        </li>
+        
+        <li>
+          <a class="h2" href="#references">References</a>
+          
+        </li>
+        
+      </ul>
+    </nav>
+    
+    
+  </aside>
+  <main>
+    
+<header>
+  <nav>
+    <a id="back-link" href="https:&#x2F;&#x2F;brendancooley.com&#x2F;posts">← ← Back</a>
+  </nav>
+</header>
+
+
+    <div>
+      
+      
+      
+      
+      <div id="copy-cfg" style="display: none;" data-copy-icon="&lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+" data-check-icon="&lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+"></div>
+      
+      <article class="prose">
+        <h1>Calculating Historical Intercapital Distances</h1>
+        <div id="post-info">
+          <div id="date">
+            <span id="publish">2018-01-10</span>
+            </div>
+
+          
+        </div>
+
+        
+        
+
+        
+
+        <p><em>Last updated 10 January 2018. Lightly edited for reproducibility 14 September 2025.</em></p>
+<p>Military power degrades with distance. Fighting a war on another continent is, for most militaries, more difficult than fighting at home. Studies of conflict frequently employ capital-to-capital distance (or some transformation of this metric) as one proxy for this loss of strength from power projection (see, for example, (Gartzke and Braithwaite (2011)). Combined with <a rel="noopener nofollow noreferrer" target="_blank" href="http://www.correlatesofwar.org/data-sets/direct-contiguity">data on territorial contiguity</a>, these metrics can provide us with a picture of the geographic constraints facing countries contemplating war with one another.</p>
+<p>Historical intercapital distance data proved difficult to find however. Most researchers appear to rely on <a rel="noopener nofollow noreferrer" target="_blank" href="http://eugenesoftware.org/welcome.asp">EuGene</a> to generate this data. I wasn’t able to track down any documentation on exactly how EuGene does this, however.<sup class="footnote-reference"><a href="#1">1</a></sup> Gleditsch and Ward (2001) generated a <em>minimum</em> interstate distance dataset, but their data only covers the post-1875 period. For researchers using <a rel="noopener nofollow noreferrer" target="_blank" href="http://www.correlatesofwar.org/">Correlates of War</a> data, distance data would ideally cover 1816 to the present.</p>
+<p>It turns out that it’s not too difficult to build intercapital distance data from scratch, however. All that is required is data on the <em>names</em> of capital cities for each state system member for every year between 1816 and the present. Paul Hensel’s <a rel="noopener nofollow noreferrer" target="_blank" href="http://www.paulhensel.org/icownames.html">ICOW Historical State Names dataset</a> provides this information. We can then use Google’s <a rel="noopener nofollow noreferrer" target="_blank" href="https://developers.google.com/maps/documentation/geocoding/start">Geocoding API</a> through the <code>ggmap</code> R package to get the coordinates of each historical capital, which can then be used to generate intercapital distance matrices.</p>
+<p>Here, I show how to conduct this exercise in R. A clean version of Hensel’s historical capital dataset is available <a rel="noopener nofollow noreferrer" target="_blank" href="https://github.com/brendancooley/intercapital-distances/blob/master/capitals.csv">here</a>. I’ve included all of the data and software necessary to generate this data on <a rel="noopener nofollow noreferrer" target="_blank" href="https://github.com/brendancooley/intercapital-distances">Github</a>. Feel free to send along questions, comments, or suggestions for improvement to <a href="mailto:bcooley@princeton.edu">bcooley@princeton.edu</a>.</p>
+<h4 id="capital-city-coordinates">Capital City Coordinates</h4>
+<p>Start by loading up the packages we’ll need for analysis:</p>
+<pre data-lang="r" class="language-r z-code"><code class="language-r" data-lang="r"><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> Install missing packages automatically
+</span></span><span class="z-source z-r">required_packages <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">c</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-string z-quoted z-single z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&#39;</span>readr<span class="z-punctuation z-definition z-string z-end z-r">&#39;</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-string z-quoted z-single z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&#39;</span>dplyr<span class="z-punctuation z-definition z-string z-end z-r">&#39;</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-string z-quoted z-single z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&#39;</span>tidyr<span class="z-punctuation z-definition z-string z-end z-r">&#39;</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-string z-quoted z-single z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&#39;</span>geosphere<span class="z-punctuation z-definition z-string z-end z-r">&#39;</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-string z-quoted z-single z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&#39;</span>ggplot2<span class="z-punctuation z-definition z-string z-end z-r">&#39;</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-string z-quoted z-single z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&#39;</span>maps<span class="z-punctuation z-definition z-string z-end z-r">&#39;</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-string z-quoted z-single z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&#39;</span>knitr<span class="z-punctuation z-definition z-string z-end z-r">&#39;</span></span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">missing_packages <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> required_packages<span class="z-meta z-item-access z-r"><span class="z-punctuation z-section z-brackets z-single z-begin z-r">[</span></span><span class="z-meta z-item-access z-r"><span class="z-meta z-item-access z-arguments z-r"><span class="z-keyword z-operator z-logical z-r">!</span>required_packages <span class="z-keyword z-operator z-other z-r">%in%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">installed.packages</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span><span class="z-meta z-item-access z-r"><span class="z-punctuation z-section z-brackets z-single z-begin z-r">[</span></span><span class="z-meta z-item-access z-r"><span class="z-meta z-item-access z-arguments z-r"><span class="z-punctuation z-separator z-parameters z-r">,</span><span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>Package<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span></span></span><span class="z-meta z-item-access z-r"><span class="z-punctuation z-section z-brackets z-single z-end z-r">]</span></span></span></span><span class="z-meta z-item-access z-r"><span class="z-punctuation z-section z-brackets z-single z-end z-r">]</span></span>
+</span><span class="z-source z-r"><span class="z-keyword z-control z-conditional z-if z-r">if</span><span class="z-punctuation z-section z-parens z-begin z-r">(</span><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">length</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>missing_packages<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-logical z-r">&gt;</span> <span class="z-constant z-numeric z-float z-decimal z-r">0</span><span class="z-punctuation z-section z-parens z-end z-r">)</span> <span class="z-punctuation z-section z-braces z-begin z-r">{</span>
+</span><span class="z-source z-r">  <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">install.packages</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>missing_packages<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">repos</span> <span class="z-keyword z-operator z-assignment z-r">=</span> <span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>https://cran.rstudio.com/<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r"><span class="z-punctuation z-section z-braces z-end z-r">}</span>
+</span><span class="z-source z-r">
+</span><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> Load all required libraries
+</span></span><span class="z-source z-r"><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">library</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>readr<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r"><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">library</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>dplyr<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r"><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">library</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>tidyr<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r"><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">library</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>geosphere<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r"><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">library</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>ggplot2<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r"><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">library</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>maps<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r"><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">library</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>knitr<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span></code></pre>
+<p>I started by cleaning up Hensel’s data a bit in excel. Each capital city is listed as its own observation, along with the country, its COW code, and the first and last year the city served as a capital. Because the Hensel data is coded annually, I take the country’s capital at the start of any given year to be its capital for that entire year. For countries that no longer exist (e.g. Mecklenburg-Schwerin) I provide a contemporary alternative country name (aName) to help Google locate the city’s coordinates. The assumption underlying this procedure is that the cities that served as capitals historically have not moved from their historical location (if I’m missing any instances where this occured please let me know). We can take a look at the data below:</p>
+<pre data-lang="r" class="language-r z-code"><code class="language-r" data-lang="r"><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> Load data directly from GitHub repository
+</span></span><span class="z-source z-r">capitals_url <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>https://raw.githubusercontent.com/brendancooley/intercapital-distances/master/capitals.csv<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span>
+</span><span class="z-source z-r">dists <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">read_csv</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>capitals_url<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">show_col_types</span> <span class="z-keyword z-operator z-assignment z-r">=</span> <span class="z-constant z-language z-r">FALSE</span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">
+</span><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> Hensel&#39;s data run from 1800-2016, set bounds
+</span></span><span class="z-source z-r">dists<span class="z-keyword z-accessor z-dollar z-r">$</span>startDate <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">ifelse</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">is.na</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>dists<span class="z-keyword z-accessor z-dollar z-r">$</span>startDate<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-constant z-numeric z-float z-decimal z-r">1800</span><span class="z-punctuation z-separator z-arguments z-r">,</span> dists<span class="z-keyword z-accessor z-dollar z-r">$</span>startDate<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">dists<span class="z-keyword z-accessor z-dollar z-r">$</span>endDate <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">ifelse</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">is.na</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>dists<span class="z-keyword z-accessor z-dollar z-r">$</span>endDate<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-constant z-numeric z-float z-decimal z-r">2016</span><span class="z-punctuation z-separator z-arguments z-r">,</span> dists<span class="z-keyword z-accessor z-dollar z-r">$</span>endDate<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">
+</span><span class="z-source z-r"><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">head</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>dists<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span></code></pre>
+<pre class="z-code"><code><span class="z-text z-plain">## # A tibble: 6 × 6
+</span><span class="z-text z-plain">##   ccode Name                     aName startDate endDate Capital        
+</span><span class="z-text z-plain">##   &lt;dbl&gt; &lt;chr&gt;                    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;          
+</span><span class="z-text z-plain">## 1     2 United States of America &lt;NA&gt;       1800    2016 Washington D.C.
+</span><span class="z-text z-plain">## 2    20 Canada                   &lt;NA&gt;       1800    1841 Ottawa         
+</span><span class="z-text z-plain">## 3    20 Canada                   &lt;NA&gt;       1841    1843 Kingston       
+</span><span class="z-text z-plain">## 4    20 Canada                   &lt;NA&gt;       1843    1849 Montreal       
+</span><span class="z-text z-plain">## 5    20 Canada                   &lt;NA&gt;       1849    1859 Toronto        
+</span><span class="z-text z-plain">## 6    20 Canada                   &lt;NA&gt;       1859    1865 Quebec City
+</span></code></pre>
+<p>For this tutorial, I’ll use the pre-geocoded dataset that already contains latitude and longitude coordinates for all capital cities. This saves time and avoids the need for Google API keys. In practice, you would use <code>ggmap</code>’s <code>geocode</code> function to get coordinates, but that requires API setup and rate limiting.</p>
+<pre data-lang="r" class="language-r z-code"><code class="language-r" data-lang="r"><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> Load the pre-geocoded dataset with coordinates
+</span></span><span class="z-source z-r">geocoded_url <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>https://raw.githubusercontent.com/brendancooley/intercapital-distances/master/dists.csv<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span>
+</span><span class="z-source z-r">dists <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">read_csv</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>geocoded_url<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">show_col_types</span> <span class="z-keyword z-operator z-assignment z-r">=</span> <span class="z-constant z-language z-r">FALSE</span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">
+</span><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> Clean up any missing values
+</span></span><span class="z-source z-r">dists<span class="z-keyword z-accessor z-dollar z-r">$</span>startDate <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">ifelse</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">is.na</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>dists<span class="z-keyword z-accessor z-dollar z-r">$</span>startDate<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-constant z-numeric z-float z-decimal z-r">1800</span><span class="z-punctuation z-separator z-arguments z-r">,</span> dists<span class="z-keyword z-accessor z-dollar z-r">$</span>startDate<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">dists<span class="z-keyword z-accessor z-dollar z-r">$</span>endDate <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">ifelse</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">is.na</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>dists<span class="z-keyword z-accessor z-dollar z-r">$</span>endDate<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-constant z-numeric z-float z-decimal z-r">2016</span><span class="z-punctuation z-separator z-arguments z-r">,</span> dists<span class="z-keyword z-accessor z-dollar z-r">$</span>endDate<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">
+</span><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> Check that all cities have coordinates
+</span></span><span class="z-source z-r"><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">cat</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>Number of cities with missing coordinates:<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">sum</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">is.na</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>dists<span class="z-keyword z-accessor z-dollar z-r">$</span>lat<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span><span class="z-constant z-character z-escape z-r">\n</span><span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span></code></pre>
+<pre class="z-code"><code><span class="z-text z-plain">## Number of cities with missing coordinates: 0
+</span></code></pre>
+<pre data-lang="r" class="language-r z-code"><code class="language-r" data-lang="r"><span class="z-source z-r"><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">cat</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>Total number of capital city records:<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">nrow</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>dists<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span><span class="z-constant z-character z-escape z-r">\n</span><span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span></code></pre>
+<pre class="z-code"><code><span class="z-text z-plain">## Total number of capital city records: 253
+</span></code></pre>
+<p>We can verify the geocoding worked correctly by visualizing all capital cities on a world map:</p>
+<figure>
+<img src="/posts/capital-cities-map.png" alt="Historical Capital Cities Map" />
+<figcaption aria-hidden="true">Historical Capital Cities Map</figcaption>
+</figure>
+<p>The geocoded capitals are available as the <code>dists</code> dataset we just loaded. You can find the original data <a rel="noopener nofollow noreferrer" target="_blank" href="https://github.com/brendancooley/intercapital-distances/blob/master/dists.csv">here</a>.</p>
+<h4 id="intercapital-distances">Intercapital Distances</h4>
+<p>Remember that the point of all this was to generate intercapital distance data for all countries in the COW data. To do this, we want to convert our geocoded capital city data into a dyadic time series that gives the distance between any two countries’ capitals for a given year. If there are $<code>N</code>$ countries in the system in a given year $<code>t</code>$, we want to be able to generate an $<code>N \times N</code>$ matrix for that year where each entry is the distance between countries $<code>i</code>$ and $<code>j</code>$.</p>
+<p>I start by loading up COW’s state system membership data, so we know which countries were members of the system for each year. The field “styear” denotes the year the country entered the system, and the field “endyear” gives the year it exited. I then append this data to the distance data. The output is shown below.</p>
+<pre data-lang="r" class="language-r z-code"><code class="language-r" data-lang="r"><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> get state system membership (COW)
+</span></span><span class="z-source z-r">sysMemUrl <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>https://correlatesofwar.org/wp-content/uploads/states2016.csv<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span>
+</span><span class="z-source z-r">
+</span><span class="z-source z-r">sysMem <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">read_csv</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>sysMemUrl<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">show_col_types</span> <span class="z-keyword z-operator z-assignment z-r">=</span> <span class="z-constant z-language z-r">FALSE</span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">select</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>ccode<span class="z-punctuation z-separator z-arguments z-r">,</span> styear<span class="z-punctuation z-separator z-arguments z-r">,</span> endyear<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">dists <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">left_join</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>dists<span class="z-punctuation z-separator z-arguments z-r">,</span> sysMem<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">by</span><span class="z-keyword z-operator z-assignment z-r">=</span><span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>ccode<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">
+</span><span class="z-source z-r"><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">head</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>dists<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span></code></pre>
+<pre class="z-code"><code><span class="z-text z-plain">## # A tibble: 6 × 10
+</span><span class="z-text z-plain">##   ccode Name          aName startDate endDate Capital   lat   lng styear endyear
+</span><span class="z-text z-plain">##   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+</span><span class="z-text z-plain">## 1     2 United State… &lt;NA&gt;       1800    2016 Washin…  38.9 -77.0   1816    2016
+</span><span class="z-text z-plain">## 2    20 Canada        &lt;NA&gt;       1800    1841 Ottawa   45.4 -75.7   1920    2016
+</span><span class="z-text z-plain">## 3    20 Canada        &lt;NA&gt;       1841    1843 Kingst…  44.2 -76.5   1920    2016
+</span><span class="z-text z-plain">## 4    20 Canada        &lt;NA&gt;       1843    1849 Montre…  45.5 -73.6   1920    2016
+</span><span class="z-text z-plain">## 5    20 Canada        &lt;NA&gt;       1849    1859 Toronto  43.7 -79.4   1920    2016
+</span><span class="z-text z-plain">## 6    20 Canada        &lt;NA&gt;       1859    1865 Quebec…  46.8 -71.2   1920    2016
+</span></code></pre>
+<p>From this dataframe, I can build the $<code>N \times N</code>$ intercapital distance matrix for any year. I wrap this in a function <code>coord2DistM</code>, which takes the desired year and the dists dataframe as arguments. It filters the distance data to include only states that were active in that year. It then feeds the latitude and longitude coordinates to the <code>distm</code> function from the <code>geosphere</code> package, which retuns the desired distance matrix. I convert all distances to kilometers.</p>
+<p>The function <code>distM2dydist</code> takes this distance matrix and a pair of COW country codes and returns the dyadic distance. Below, I show how to use these functions to build the intercapital distance matrix for the year 1816 and get the distance between Britain and Saxony.</p>
+<pre data-lang="r" class="language-r z-code"><code class="language-r" data-lang="r"><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> Note: assigns capital to city that was capital at beginning of year
+</span></span><span class="z-source z-r">
+</span><span class="z-source z-r"><span class="z-meta z-function z-name z-r"><span class="z-entity z-name z-function z-r">coord2DistM</span> </span><span class="z-meta z-function z-r"><span class="z-keyword z-operator z-assignment z-r">&lt;-</span> </span><span class="z-meta z-function z-r"><span class="z-storage z-type z-function z-r">function</span></span><span class="z-meta z-function z-parameters z-r"><span class="z-punctuation z-section z-parameters z-begin z-r">(</span><span class="z-variable z-parameter z-r">dists</span><span class="z-punctuation z-separator z-parameters z-r">,</span> <span class="z-variable z-parameter z-r">year</span><span class="z-punctuation z-section z-parameters z-end z-r">)</span></span> <span class="z-punctuation z-section z-braces z-begin z-r">{</span>
+</span><span class="z-source z-r">  <span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> filter by system membership, then relevant capital
+</span></span><span class="z-source z-r">  distsY <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> dists <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">filter</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>styear <span class="z-keyword z-operator z-logical z-r">&lt;=</span> year<span class="z-punctuation z-separator z-arguments z-r">,</span> endyear <span class="z-keyword z-operator z-logical z-r">&gt;=</span> year<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">filter</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>startDate <span class="z-keyword z-operator z-logical z-r">&lt;</span> year <span class="z-keyword z-operator z-logical z-r">&amp;</span> endDate <span class="z-keyword z-operator z-logical z-r">&gt;=</span> year<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">  <span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> check that one capital returned per country
+</span></span><span class="z-source z-r">  <span class="z-keyword z-control z-conditional z-if z-r">if</span> <span class="z-punctuation z-section z-parens z-begin z-r">(</span><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">length</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">unique</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>distsY<span class="z-keyword z-accessor z-dollar z-r">$</span>Capital<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-logical z-r">!=</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">length</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">unique</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>distsY<span class="z-keyword z-accessor z-dollar z-r">$</span>Name<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span><span class="z-punctuation z-section z-parens z-end z-r">)</span> <span class="z-punctuation z-section z-braces z-begin z-r">{</span>
+</span><span class="z-source z-r">    <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">print</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-string z-quoted z-single z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&#39;</span>error: nCountries != nCapitals, check underlying coordinate data<span class="z-punctuation z-definition z-string z-end z-r">&#39;</span></span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">  <span class="z-punctuation z-section z-braces z-end z-r">}</span>
+</span><span class="z-source z-r">  <span class="z-keyword z-control z-conditional z-else z-r">else</span> <span class="z-punctuation z-section z-braces z-begin z-r">{</span>
+</span><span class="z-source z-r">    <span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> get distance matrix for selected year
+</span></span><span class="z-source z-r">    latlng <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> distsY <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">select</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-string z-quoted z-single z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&#39;</span>lng<span class="z-punctuation z-definition z-string z-end z-r">&#39;</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-string z-quoted z-single z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&#39;</span>lat<span class="z-punctuation z-definition z-string z-end z-r">&#39;</span></span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">as.matrix</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">    distsYmatrix <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">distm</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>latlng<span class="z-punctuation z-separator z-arguments z-r">,</span> latlng<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">fun</span><span class="z-keyword z-operator z-assignment z-r">=</span>distVincentySphere<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">    distsYmatrix <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> distsYmatrix <span class="z-keyword z-operator z-arithmetic z-r">/</span> <span class="z-constant z-numeric z-float z-decimal z-r">1000</span>  <span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> convert to km
+</span></span><span class="z-source z-r">    <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">rownames</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>distsYmatrix<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">colnames</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>distsYmatrix<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> distsY<span class="z-keyword z-accessor z-dollar z-r">$</span>ccode
+</span><span class="z-source z-r">    <span class="z-keyword z-control z-flow z-return z-r">return</span><span class="z-punctuation z-section z-parens z-begin z-r">(</span>distsYmatrix<span class="z-punctuation z-section z-parens z-end z-r">)</span>
+</span><span class="z-source z-r">  <span class="z-punctuation z-section z-braces z-end z-r">}</span>
+</span><span class="z-source z-r"><span class="z-punctuation z-section z-braces z-end z-r">}</span>
+</span><span class="z-source z-r">
+</span><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> get distance between i and j
+</span></span><span class="z-source z-r"><span class="z-meta z-function z-name z-r"><span class="z-entity z-name z-function z-r">distM2dydist</span> </span><span class="z-meta z-function z-r"><span class="z-keyword z-operator z-assignment z-r">&lt;-</span> </span><span class="z-meta z-function z-r"><span class="z-storage z-type z-function z-r">function</span></span><span class="z-meta z-function z-parameters z-r"><span class="z-punctuation z-section z-parameters z-begin z-r">(</span><span class="z-variable z-parameter z-r">distM</span><span class="z-punctuation z-separator z-parameters z-r">,</span> <span class="z-variable z-parameter z-r">ccode1</span><span class="z-punctuation z-separator z-parameters z-r">,</span> <span class="z-variable z-parameter z-r">ccode2</span><span class="z-punctuation z-section z-parameters z-end z-r">)</span></span> <span class="z-punctuation z-section z-braces z-begin z-r">{</span>
+</span><span class="z-source z-r">  <span class="z-keyword z-control z-flow z-return z-r">return</span><span class="z-punctuation z-section z-parens z-begin z-r">(</span>distM<span class="z-meta z-item-access z-r"><span class="z-punctuation z-section z-brackets z-single z-begin z-r">[</span></span><span class="z-meta z-item-access z-r"><span class="z-meta z-item-access z-arguments z-r">ccode1<span class="z-punctuation z-separator z-parameters z-r">,</span> ccode2</span></span><span class="z-meta z-item-access z-r"><span class="z-punctuation z-section z-brackets z-single z-end z-r">]</span></span><span class="z-punctuation z-section z-parens z-end z-r">)</span>
+</span><span class="z-source z-r"><span class="z-punctuation z-section z-braces z-end z-r">}</span>
+</span><span class="z-source z-r">
+</span><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> application
+</span></span><span class="z-source z-r">year <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-constant z-numeric z-float z-decimal z-r">1816</span>
+</span><span class="z-source z-r">Britain <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>200<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span>
+</span><span class="z-source z-r">Saxony <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>269<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span>
+</span><span class="z-source z-r">
+</span><span class="z-source z-r">distM1816 <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">coord2DistM</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>dists<span class="z-punctuation z-separator z-arguments z-r">,</span> year<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r"><span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">distM2dydist</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>distM1816<span class="z-punctuation z-separator z-arguments z-r">,</span> Britain<span class="z-punctuation z-separator z-arguments z-r">,</span> Saxony<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span></code></pre>
+<pre class="z-code"><code><span class="z-text z-plain">## [1] 965.3628
+</span></code></pre>
+<p>These functions can be used in tandem to grab intercapital distances for arbitrary year, dyad pairings.</p>
+<h4 id="merge-with-cow-war-data">Merge with COW War Data</h4>
+<p>Conflict researchers often want this data to analyze wars. Now I show how to merge intercapital distance data with COW’s inter-state-war data. I clean up the COW war data a bit, which you can see below post-cleaning. In the most basic leve, the data give information about the belligerents in every war and how long each war lasted.</p>
+<pre data-lang="r" class="language-r z-code"><code class="language-r" data-lang="r"><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> append to COW wars data
+</span></span><span class="z-source z-r">warUrl <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>https://correlatesofwar.org/wp-content/uploads/Inter-StateWarData_v4.0.csv<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span>
+</span><span class="z-source z-r">cowWars <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">read_csv</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>warUrl<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">show_col_types</span> <span class="z-keyword z-operator z-assignment z-r">=</span> <span class="z-constant z-language z-r">FALSE</span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">
+</span><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> for simplicity, ignore armistices
+</span></span><span class="z-source z-r">cowWars<span class="z-keyword z-accessor z-dollar z-r">$</span>StartYear <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> cowWars<span class="z-keyword z-accessor z-dollar z-r">$</span>StartYear1
+</span><span class="z-source z-r">cowWars<span class="z-keyword z-accessor z-dollar z-r">$</span>EndYear <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">ifelse</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>cowWars<span class="z-keyword z-accessor z-dollar z-r">$</span>EndYear2 <span class="z-keyword z-operator z-logical z-r">==</span> <span class="z-keyword z-operator z-arithmetic z-r">-</span><span class="z-constant z-numeric z-float z-decimal z-r">8</span><span class="z-punctuation z-separator z-arguments z-r">,</span> cowWars<span class="z-keyword z-accessor z-dollar z-r">$</span>EndYear1<span class="z-punctuation z-separator z-arguments z-r">,</span> cowWars<span class="z-keyword z-accessor z-dollar z-r">$</span>EndYear2<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">cowWars <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> cowWars <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">select</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>WarName<span class="z-punctuation z-separator z-arguments z-r">,</span> ccode<span class="z-punctuation z-separator z-arguments z-r">,</span> StateName<span class="z-punctuation z-separator z-arguments z-r">,</span> Side<span class="z-punctuation z-separator z-arguments z-r">,</span> StartYear<span class="z-punctuation z-separator z-arguments z-r">,</span> EndYear<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">
+</span><span class="z-source z-r"><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">head</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>cowWars<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span></code></pre>
+<pre class="z-code"><code><span class="z-text z-plain">## # A tibble: 6 × 6
+</span><span class="z-text z-plain">##   WarName             ccode StateName                 Side StartYear EndYear
+</span><span class="z-text z-plain">##   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+</span><span class="z-text z-plain">## 1 Franco-Spanish War    230 Spain                        2      1823    1823
+</span><span class="z-text z-plain">## 2 Franco-Spanish War    220 France                       1      1823    1823
+</span><span class="z-text z-plain">## 3 First Russo-Turkish   640 Ottoman Empire               2      1828    1829
+</span><span class="z-text z-plain">## 4 First Russo-Turkish   365 Russia                       1      1828    1829
+</span><span class="z-text z-plain">## 5 Mexican-American       70 Mexico                       2      1846    1847
+</span><span class="z-text z-plain">## 6 Mexican-American        2 United States of America     1      1846    1847
+</span></code></pre>
+<p>We want to know the intercapital distance between each pair of belligerents between 1816 and the present. We could use the <code>coord2DistM</code> and <code>distM2dydist</code> but this would require calculating the intercapital distance matrix for every year in which there was a war. A simpler solution is to build a dataframe of capital-years, along with their coordinates, merge this with the war data, and calculate the distance between belligerents, given their capitals’ coordinates.</p>
+<p>I used the procedure in this <a rel="noopener nofollow noreferrer" target="_blank" href="https://stackoverflow.com/questions/28553762/expand-year-range-in-r">stackoverflow post</a> to create the capital-year dataframe. Once merged, I use <code>geosphere</code>’s <code>distVicentySphere</code> function to calculate the distances. The resulting data is shown below the code.</p>
+<pre data-lang="r" class="language-r z-code"><code class="language-r" data-lang="r"><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> convert capital data to yearly observations
+</span></span><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> https://stackoverflow.com/questions/28553762/expand-year-range-in-r
+</span></span><span class="z-source z-r">distsYear <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> dists
+</span><span class="z-source z-r">distsYear<span class="z-keyword z-accessor z-dollar z-r">$</span>year <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">mapply</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>seq<span class="z-punctuation z-separator z-arguments z-r">,</span> distsYear<span class="z-keyword z-accessor z-dollar z-r">$</span>startDate<span class="z-punctuation z-separator z-arguments z-r">,</span> distsYear<span class="z-keyword z-accessor z-dollar z-r">$</span>endDate<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">SIMPLIFY</span><span class="z-keyword z-operator z-assignment z-r">=</span><span class="z-constant z-language z-r">FALSE</span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">distsYear <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> distsYear <span class="z-keyword z-operator z-other z-r">%&gt;%</span>
+</span><span class="z-source z-r">  <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">unnest</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>year<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-other z-r">%&gt;%</span>
+</span><span class="z-source z-r">  <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">select</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>ccode<span class="z-punctuation z-separator z-arguments z-r">,</span> year<span class="z-punctuation z-separator z-arguments z-r">,</span> lat<span class="z-punctuation z-separator z-arguments z-r">,</span> lng<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">
+</span><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> get capital in start year
+</span></span><span class="z-source z-r">cowWars<span class="z-keyword z-accessor z-dollar z-r">$</span>year <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> cowWars<span class="z-keyword z-accessor z-dollar z-r">$</span>StartYear
+</span><span class="z-source z-r">
+</span><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> append coords for each side
+</span></span><span class="z-source z-r">cowWars1 <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> cowWars <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">filter</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>Side <span class="z-keyword z-operator z-logical z-r">==</span> <span class="z-constant z-numeric z-float z-decimal z-r">1</span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">left_join</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>distsYear<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">by</span><span class="z-keyword z-operator z-assignment z-r">=</span><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">c</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>ccode<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>year<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">rename</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-variable z-parameter z-r">State1</span> <span class="z-keyword z-operator z-assignment z-r">=</span> StateName<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">ccode1</span> <span class="z-keyword z-operator z-assignment z-r">=</span> ccode<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">lat1</span> <span class="z-keyword z-operator z-assignment z-r">=</span> lat<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">lng1</span> <span class="z-keyword z-operator z-assignment z-r">=</span> lng<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">select</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-keyword z-operator z-arithmetic z-r">-</span>Side<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">cowWars2 <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> cowWars <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">filter</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>Side <span class="z-keyword z-operator z-logical z-r">==</span> <span class="z-constant z-numeric z-float z-decimal z-r">2</span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">left_join</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>distsYear<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">by</span><span class="z-keyword z-operator z-assignment z-r">=</span><span class="z-meta z-function-call z-name z-r"><span class="z-support z-function z-r">c</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>ccode<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span><span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>year<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">rename</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span><span class="z-variable z-parameter z-r">State2</span> <span class="z-keyword z-operator z-assignment z-r">=</span> StateName<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">ccode2</span> <span class="z-keyword z-operator z-assignment z-r">=</span> ccode<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">lat2</span> <span class="z-keyword z-operator z-assignment z-r">=</span> lat<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">lng2</span> <span class="z-keyword z-operator z-assignment z-r">=</span> lng<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">select</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>WarName<span class="z-punctuation z-separator z-arguments z-r">,</span> State2<span class="z-punctuation z-separator z-arguments z-r">,</span> ccode2<span class="z-punctuation z-separator z-arguments z-r">,</span> lat2<span class="z-punctuation z-separator z-arguments z-r">,</span> lng2<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">
+</span><span class="z-source z-r">cowWarsDyadic <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">left_join</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>cowWars1<span class="z-punctuation z-separator z-arguments z-r">,</span> cowWars2<span class="z-punctuation z-separator z-arguments z-r">,</span> <span class="z-variable z-parameter z-r">by</span><span class="z-keyword z-operator z-assignment z-r">=</span><span class="z-string z-quoted z-double z-r"><span class="z-punctuation z-definition z-string z-begin z-r">&quot;</span>WarName<span class="z-punctuation z-definition z-string z-end z-r">&quot;</span></span><span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">select</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>WarName<span class="z-punctuation z-separator z-arguments z-r">,</span> ccode1<span class="z-punctuation z-separator z-arguments z-r">,</span> State1<span class="z-punctuation z-separator z-arguments z-r">,</span> ccode2<span class="z-punctuation z-separator z-arguments z-r">,</span> State2<span class="z-punctuation z-separator z-arguments z-r">,</span> year<span class="z-punctuation z-separator z-arguments z-r">,</span> lng1<span class="z-punctuation z-separator z-arguments z-r">,</span> lat1<span class="z-punctuation z-separator z-arguments z-r">,</span> lng2<span class="z-punctuation z-separator z-arguments z-r">,</span> lat2<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">
+</span><span class="z-source z-r"><span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> calculate distance
+</span></span><span class="z-source z-r">latlng1 <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> cowWarsDyadic <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">select</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>lng1<span class="z-punctuation z-separator z-arguments z-r">,</span> lat1<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">latlng2 <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> cowWarsDyadic <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">select</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>lng2<span class="z-punctuation z-separator z-arguments z-r">,</span> lat2<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span><span class="z-source z-r">cowWarsDyadic<span class="z-keyword z-accessor z-dollar z-r">$</span>distance <span class="z-keyword z-operator z-assignment z-r">&lt;-</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">distVincentySphere</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>latlng1<span class="z-punctuation z-separator z-arguments z-r">,</span> latlng2<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span> <span class="z-keyword z-operator z-arithmetic z-r">/</span> <span class="z-constant z-numeric z-float z-decimal z-r">1000</span>  <span class="z-comment z-line z-number-sign z-r"><span class="z-punctuation z-definition z-comment z-r">#</span> convert to km
+</span></span><span class="z-source z-r">
+</span><span class="z-source z-r">cowWarsDyadic <span class="z-keyword z-operator z-other z-r">%&gt;%</span> <span class="z-meta z-function-call z-name z-r"><span class="z-variable z-function z-r">select</span></span><span class="z-meta z-function-call z-arguments z-r"><span class="z-punctuation z-section z-arguments z-begin z-r">(</span>WarName<span class="z-punctuation z-separator z-arguments z-r">,</span> ccode1<span class="z-punctuation z-separator z-arguments z-r">,</span> State1<span class="z-punctuation z-separator z-arguments z-r">,</span> ccode2<span class="z-punctuation z-separator z-arguments z-r">,</span> State2<span class="z-punctuation z-separator z-arguments z-r">,</span> distance<span class="z-punctuation z-section z-arguments z-end z-r">)</span></span>
+</span></code></pre>
+<pre class="z-code"><code><span class="z-text z-plain">## # A tibble: 813 × 6
+</span><span class="z-text z-plain">##    WarName                  ccode1 State1                 ccode2 State2 distance
+</span><span class="z-text z-plain">##    &lt;chr&gt;                     &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+</span><span class="z-text z-plain">##  1 Franco-Spanish War          220 France                    230 Spain     1054.
+</span><span class="z-text z-plain">##  2 Franco-Spanish War          220 France                    230 Spain     1054.
+</span><span class="z-text z-plain">##  3 First Russo-Turkish         365 Russia                    640 Ottom…    2233.
+</span><span class="z-text z-plain">##  4 Mexican-American              2 United States of Amer…     70 Mexico    3035.
+</span><span class="z-text z-plain">##  5 Austro-Sardinian            300 Austria                   337 Tusca…     632.
+</span><span class="z-text z-plain">##  6 Austro-Sardinian            300 Austria                   325 Italy      765.
+</span><span class="z-text z-plain">##  7 Austro-Sardinian            300 Austria                   332 Modena     575.
+</span><span class="z-text z-plain">##  8 First Schleswig-Holstein    255 Prussia                   390 Denma…     356.
+</span><span class="z-text z-plain">##  9 First Schleswig-Holstein    255 Prussia                   390 Denma…     356.
+</span><span class="z-text z-plain">## 10 First Schleswig-Holstein    255 Prussia                   390 Denma…     356.
+</span><span class="z-text z-plain">## # ℹ 803 more rows
+</span></code></pre>
+<p>The resulting data can be found <a rel="noopener nofollow noreferrer" target="_blank" href="https://github.com/brendancooley/intercapital-distances/blob/master/cowWarsDist.csv">here</a>.</p>
+<h4 id="r-packages">R Packages</h4>
+<p>Wickham H, Hester J and Francois R (2017). <em>readr: Read Rectangular Text Data</em>. R package version 1.1.1, &lt;URL: <a rel="noopener nofollow noreferrer" target="_blank" href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>&gt;.</p>
+<p>Wickham H, Francois R, Henry L and Müller K (2017). <em>dplyr: A Grammar of Data Manipulation</em>. R package version 0.7.4, &lt;URL: <a rel="noopener nofollow noreferrer" target="_blank" href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>&gt;.</p>
+<p>Wickham H and Henry L (2017). <em>tidyr: Easily Tidy Data with ‘spread()’ and ‘gather()’ Functions</em>. R package version 0.7.2, &lt;URL: <a rel="noopener nofollow noreferrer" target="_blank" href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>&gt;.</p>
+<p>Kahle D and Wickham H (2013). “ggmap: Spatial Visualization with ggplot2.” <em>The R Journal</em>, <em>5</em>(1), pp. 144-161. &lt;URL: <a rel="noopener nofollow noreferrer" target="_blank" href="http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf">http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf</a>&gt;.</p>
+<p>Hijmans RJ (2016). <em>geosphere: Spherical Trigonometry</em>. R package version 1.5-5, &lt;URL: <a rel="noopener nofollow noreferrer" target="_blank" href="https://CRAN.R-project.org/package=geosphere">https://CRAN.R-project.org/package=geosphere</a>&gt;.</p>
+<p>Cheng J, Karambelkar B and Xie Y (2017). <em>leaflet: Create Interactive Web Maps with the JavaScript ‘Leaflet’ Library</em>. R package version 1.1.0, &lt;URL: <a rel="noopener nofollow noreferrer" target="_blank" href="https://CRAN.R-project.org/package=leaflet">https://CRAN.R-project.org/package=leaflet</a>&gt;.</p>
+<p>Xie Y (2017). <em>knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. R package version 1.18, &lt;URL: <a rel="noopener nofollow noreferrer" target="_blank" href="https://yihui.name/knitr/">https://yihui.name/knitr/</a>&gt;.</p>
+<p>Xie Y (2015). <em>Dynamic Documents with R and knitr</em>, 2nd edition. Chapman and Hall/CRC, Boca Raton, Florida. ISBN 978-1498716963, &lt;URL: <a rel="noopener nofollow noreferrer" target="_blank" href="https://yihui.name/knitr/">https://yihui.name/knitr/</a>&gt;.</p>
+<p>Xie Y (2014). “knitr: A Comprehensive Tool for Reproducible Research in R.” In Stodden V, Leisch F and Peng RD (eds.), <em>Implementing Reproducible Computational Research</em>. Chapman and Hall/CRC. ISBN 978-1466561595, &lt;URL: <a rel="noopener nofollow noreferrer" target="_blank" href="http://www.crcpress.com/product/isbn/9781466561595">http://www.crcpress.com/product/isbn/9781466561595</a>&gt;.</p>
+<p>Francois R (2017). <em>bibtex: Bibtex Parser</em>. R package version 0.4.2, &lt;URL: <a rel="noopener nofollow noreferrer" target="_blank" href="https://CRAN.R-project.org/package=bibtex">https://CRAN.R-project.org/package=bibtex</a>&gt;.</p>
+<p>Boettiger C (2017). <em>knitcitations: Citations for ‘Knitr’ Markdown Files</em>. R package version 1.0.8, &lt;URL: <a rel="noopener nofollow noreferrer" target="_blank" href="https://CRAN.R-project.org/package=knitcitations">https://CRAN.R-project.org/package=knitcitations</a>&gt;.</p>
+<h4 id="references">References</h4>
+<p>Gartzke, Erik, and Alex Braithwaite. 2011. “Power, Parity and Proximity.”</p>
+<p>Gleditsch, Kristian S, and Michael D Ward. 2001. “Measuring space: A minimum-distance database and applications to international studies.” Journal of Peace Research 38 (6).</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>Tips on where to find this documentation are more than welcome.</p>
+</div>
+
+      </article>
+
+      
+      
+
+      
+      
+    </div>
+
+    
+
+
+<footer>
+  <div class="left">
+    <div class="copyright">
+      © 2025 Brendan Cooley
+      
+      <span>|</span>
+      Built with <a href="https://www.getzola.org" rel="noreferrer" target="_blank">zola</a> and <a href="https://github.com/isunjn/serene" rel="noreferrer" target="_blank">serene</a>
+      
+    </div>
+  </div>
+
+  <div class="right">
+    
+    
+      
+    
+    
+    <a id="rss-btn" href="https://brendancooley.com/feed.xml">RSS</a>
+    
+    
+
+    
+    
+    
+    <button id="theme-toggle" aria-label="theme switch">
+      <span class="moon-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M10 7C10 10.866 13.134 14 17 14C18.9584 14 20.729 13.1957 21.9995 11.8995C22 11.933 22 11.9665 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C12.0335 2 12.067 2 12.1005 2.00049C10.8043 3.27098 10 5.04157 10 7ZM4 12C4 16.4183 7.58172 20 12 20C15.0583 20 17.7158 18.2839 19.062 15.7621C18.3945 15.9187 17.7035 16 17 16C12.0294 16 8 11.9706 8 7C8 6.29648 8.08133 5.60547 8.2379 4.938C5.71611 6.28423 4 8.9417 4 12Z" fill="currentColor"></path></svg>
+</span>
+      <span class="sun-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12C18 15.3137 15.3137 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16ZM11 1H13V4H11V1ZM11 20H13V23H11V20ZM3.51472 4.92893L4.92893 3.51472L7.05025 5.63604L5.63604 7.05025L3.51472 4.92893ZM16.9497 18.364L18.364 16.9497L20.4853 19.0711L19.0711 20.4853L16.9497 18.364ZM19.0711 3.51472L20.4853 4.92893L18.364 7.05025L16.9497 5.63604L19.0711 3.51472ZM5.63604 16.9497L7.05025 18.364L4.92893 20.4853L3.51472 19.0711L5.63604 16.9497ZM23 11V13H20V11H23ZM4 11V13H1V11H4Z" fill="currentColor"></path></svg>
+</span>
+    </button>
+    
+  </div>
+</footer>
+
+
+
+
+<dialog id="rss-mask">
+  <div>
+    <a href="https:&#x2F;&#x2F;brendancooley.com&#x2F;feed.xml">https:&#x2F;&#x2F;brendancooley.com&#x2F;feed.xml</a>
+    
+    
+    <button autofocus aria-label="copy" data-link="https:&#x2F;&#x2F;brendancooley.com&#x2F;feed.xml" data-copy-icon="&lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+" data-check-icon="&lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+" >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z" fill="currentColor"></path></svg>
+
+    </button>
+  </div>
+</dialog>
+
+
+
+  </main>
+</div>
+
+  
+<script src="/js/lightense.min.js"></script>
+
+
+  <script src="https://brendancooley.com/js/main.js"></script>
+</body>
+
+</html>
