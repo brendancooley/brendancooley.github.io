@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://brendancooley.com/</loc>
+    </url>
+    <url>
+        <loc>https://brendancooley.com/categories/</loc>
+    </url>
+    <url>
+        <loc>https://brendancooley.com/posts/</loc>
+    </url>
+    <url>
+        <loc>https://brendancooley.com/posts/dists/</loc>
+        <lastmod>2018-01-10</lastmod>
+    </url>
+    <url>
+        <loc>https://brendancooley.com/posts/icews/</loc>
+        <lastmod>2018-04-11</lastmod>
+    </url>
+    <url>
+        <loc>https://brendancooley.com/tags/</loc>
+    </url>
+</urlset>

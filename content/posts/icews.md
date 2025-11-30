@@ -7,21 +7,23 @@ tags: ["R", "political-science", "event-data", "conflict"]
 categories: ["tutorial", "research-methods"]
 ---
 
-*Last updated 11 April 2018*
+*Last updated 11 April 2018. Lightly edited for reproducibility 30 November 2025.*
 
 Datasets that researchers use to measure conflict in international relations are generally coarse. The [Correlates of War (COW) Project’s](http://www.correlatesofwar.org/) [Militarized Interstate Dispute](http://www.correlatesofwar.org/data-sets/MIDs) data records threats, displays, and uses of military force between 1816 and 2010 and COW’s [interstate war](http://cow.dss.ucdavis.edu/data-sets/COW-war) data records conflicts which resulted in at least 1,000 battle deaths. Both MIDs and wars are exceedingly unusual. Yet the “stuff” of international relations happens every day. Governments are bargaining and communicating all the time – sometimes cooperatively and sometimes conflictually. These interactions almost certaintly contain information about their proclivity to experience armed conflict. New data might help us measure and understand this “stuff” better.
 
 In recent years, several very-large-n (\>1,000,000 observation) dyadic event datasets have become available for public use. An “event” takes the form of “\[actor x\] undertook \[action z\] toward \[actor y\] on \[date w\].” Natural language processors scrape newswires and map events into preexisting event and actor ontologies. The [Integrated Crisis Early Warning System (ICEWS)](https://dataverse.harvard.edu/dataverse/icews) is one such dataset. You can find a nice discussion of the project’s history by Phil Shrodt [here](https://asecondmouse.wordpress.com/2015/03/30/seven-observations-on-the-newly-released-icews-data/). [Andreas Beger](https://andybeger.com/2015/04/08/public-icews-data/) and [David Masad](http://nbviewer.jupyter.org/gist/dmasad/f79ce5abfd4fb61d253b) have nice writeups on what the data look like. It’s still pretty rare to see these data used in political science, however. See Gallop (2016), Minhas, Hoff, and Ward (2016), and Roberts and Tellez (2017) for notable exceptions.[^1]
 
-This may be because it’s still a little tricky to get these data into a format suitable for empirical analyses. Having struggled myself to clean ICEWS, I figured it’d be worth sharing my experience (working in R). I show three steps in the process here:
+This may be because it’s still a little tricky to get these data into a format suitable for empirical analyses. Having struggled myself to clean ICEWS, I figured it’d be worth sharing my experience (working in R).
+
+**Note:** This post is an illustrative tutorial showing the workflow for processing ICEWS data. The code examples below are for demonstration purposes. For the complete, executable implementation, see the [icews-clean](https://github.com/brendancooley/icews-clean) repository on GitHub.
+
+I show three steps in the process here:
 
 1.  Grabbing the data from dataverse
 2.  Converting it ‘reduced’ form with conflict cooperation scores and COW codes, employing Phil Shrodt’s [software](https://github.com/openeventdata/text_to_CAMEO/)
 3.  Converting the ‘reduced’ data into date-dyad counts
 
-As always, feel free to send along questions or comments or point out mistakes. That’s the point of open research. You can find all the software supporting this [here](https://github.com/brendancooley/icews-clean).
-
-First, get the environment setup
+First, get the environment setup:
 
 ``` r
 packages <- c('dataverse', 'dplyr', 'zoo', 'lubridate', 'tidyr', 'bibtex', 'knitcitations')
@@ -70,7 +72,7 @@ fNames <- paste0('rawICEWS/', list.files('rawICEWS'))
 lapply(fNames, write, 'fNames.txt', append=TRUE)
 ```
 
-This will take a minute or two. Go get some coffee. Alternatively, you can download the raw data (as of April 2018) from my [Dropbox](https://www.dropbox.com/sh/94coknnsbxjds7b/AABMEsxH6jVlDLRygQn0xRtha?dl=0) and plop it into your /rawICEWS folder in your working directory. The nice thing about this code is that it should dynamically grab new data as the ICEWS project uploads it to dataverse.
+This will take a minute or two. Go get some coffee. The nice thing about this code is that it should dynamically grab new data as the ICEWS project uploads it to dataverse.
 
 Either way, now we have all of our raw data ready to go sitting in /rawICEWS. The raw ICEWS data is clunky on several dimensions. Phil Shrodt provides software to get it into a format that looks recognizable to empirical international relations researchers. If you’re interested in the machinery, check it out [here](https://github.com/openeventdata/text_to_CAMEO).
 
@@ -78,7 +80,7 @@ For our purposes, we just need the script `text_to_CAMEO.py` and the ontology fi
 
     python text_to_CAMEO.py -c -t fNames.txt
 
-After this you should have a bunch of .txt files sitting in your working directory. I moved them over to a /reducedICEWS folder and you can find them [here](https://www.dropbox.com/sh/9h9g5944f4fd606/AADBmYvKVUCXbO7GoPZwEweOa?dl=0). Now we can load these into memory and get to work.
+After this you should have a bunch of .txt files sitting in your working directory. Move them to a /reducedICEWS folder and you can load these into memory and get to work.
 
 ``` r
 # helper to replace empty cells with NAs
